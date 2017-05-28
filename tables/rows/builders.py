@@ -6,8 +6,8 @@ class MovieSearchRowBuilder:
     def __init__(self):
         self.rating_formatter = RatingFormatter()
 
-    def build(self, data):
-        return [data.name, self.rating_formatter.format(rating=data.rotten_tomatoes_score), data.year, ", ".join(data.cast)]
+    def build(self, movie):
+        return [movie.name, self.rating_formatter.format(rating=movie.rotten_tomatoes_score), movie.year, ", ".join(movie.cast)]
 
 
 class TvShowSearchRowBuilder:
