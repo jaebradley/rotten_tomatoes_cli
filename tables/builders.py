@@ -1,6 +1,6 @@
 from terminaltables import SingleTable
 
-from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder
+from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder
 
 
 class MovieSearchTableBuilder:
@@ -39,6 +39,26 @@ class TvShowSearchTableBuilder:
     def build(self, tv_shows):
         table = SingleTable([TvShowSearchTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
         table.justify_columns = TvShowSearchTableBuilder.COLUMN_JUSTIFICATION
+        return table.table
+
+    def rows(self, tv_shows):
+        sorted_tv_shows = sorted(tv_shows, key=lambda tv_show: tv_show.rotten_tomatoes_score, reverse=True)
+        return [self.row_builder.build(tv_show=tv_show) for tv_show in sorted_tv_shows]
+
+
+class BrowseTvShowTableBuilder:
+    HEADERS = ["TV Show", "Score"]
+    COLUMN_JUSTIFICATION = {
+        0: "left",
+        1: "left",
+    }
+
+    def __init__(self):
+        self.row_builder = BrowseTvShowRowBuilder()
+
+    def build(self, tv_shows):
+        table = SingleTable([BrowseTvShowTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
+        table.justify_columns = BrowseTvShowTableBuilder.COLUMN_JUSTIFICATION
         return table.table
 
     def rows(self, tv_shows):

@@ -22,4 +22,4 @@ class RottenTomatoesTvShowsBrowser:
 
     def browse(self, category):
         results = RottenTomatoesClient.browse_tv_shows(category=category)
-        return self.tv_shows_parser.parse(tv_show_results=results)
+        return self.tv_shows_parser.parse(tv_show_results=results["results"])

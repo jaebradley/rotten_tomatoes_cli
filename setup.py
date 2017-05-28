@@ -13,7 +13,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'search = scripts.search:search'
+            # 'search = scripts.search:search'
+            'browse = scripts.browse:browse'
         ],
     }
 )
