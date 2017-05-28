@@ -7,4 +7,4 @@ class MovieSearchRowBuilder:
         self.rating_formatter = RatingFormatter()
 
     def build(self, data):
-        return [data.title, self.rating_formatter.format(rating=data.rating), data.year, ", ".join(data.cast)]
+        return [data.name, data.rotten_tomatoes_score, data.year, ", ".join(data.cast)]

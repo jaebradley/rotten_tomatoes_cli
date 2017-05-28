@@ -6,10 +6,15 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'Click'
+        'Click',
+        'rotten_tomatoes_client',
+        'emoji',
+        'terminaltables',
+        'termcolor'
     ],
-    entry_points='''
-        [console_scripts]
-        search=rotten_tomatoes_cli.scripts.search.cli
-    ''',
+    entry_points={
+        'console_scripts': [
+            'search = scripts.search:search'
+        ],
+    }
 )
