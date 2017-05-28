@@ -7,8 +7,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'Click',
-        'rotten_tomatoes_client',
-        'emoji',
+        'rotten_tomatoes_client==0.0.2',
         'terminaltables',
         'termcolor'
     ],

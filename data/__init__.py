@@ -18,3 +18,13 @@ class SearchResult:
     def __init__(self, movies, tv_shows):
         self.movies = movies
         self.tv_shows = tv_shows
+
+
+class BrowseMovieResult:
+    def __init__(self, title, rotten_tomatoes_score, synopsis, runtime, release_date, mpaa_rating):
+        self.title = title
+        self.rotten_tomatoes_score = rotten_tomatoes_score
+        self.synopsis = synopsis
+        self.runtime = runtime
+        self.release_date = release_date
+        self.mpaa_rating = mpaa_rating
