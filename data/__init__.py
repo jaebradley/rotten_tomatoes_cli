@@ -21,10 +21,17 @@ class SearchResult:
 
 
 class BrowseMovieResult:
-    def __init__(self, title, rotten_tomatoes_score, synopsis, runtime, release_date, mpaa_rating):
+    def __init__(self, title, rotten_tomatoes_score, synopsis, runtime, theater_release_date, dvd_release_date, mpaa_rating):
         self.title = title
         self.rotten_tomatoes_score = rotten_tomatoes_score
         self.synopsis = synopsis
         self.runtime = runtime
-        self.release_date = release_date
+        self.theater_release_date = theater_release_date
+        self.dvd_release_date = dvd_release_date
         self.mpaa_rating = mpaa_rating
+
+
+class BrowseTvShowResult:
+    def __init__(self, title, rotten_tomatoes_score):
+        self.title = title
+        self.rotten_tomatoes_score = rotten_tomatoes_score

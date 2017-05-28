@@ -1,4 +1,4 @@
-from data import TvShowSearchResult, MovieSearchResult
+from data import TvShowSearchResult, MovieSearchResult, BrowseTvShowResult
 
 
 class TvShowSearchResultsParser:
@@ -41,3 +41,18 @@ class MovieSearchResultsParser:
     # Sometimes this field is not set
     def rotten_tomatoes_score(self, result):
         return None if "meterScore" not in result else result["meterScore"]
+
+
+class TvShowBrowseResultsParser:
+    def __init__(self):
+        pass
+
+    def parse(self, tv_show_results):
+        return [
+            BrowseTvShowResult(title=tv_show_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
+            for tv_show_result in tv_show_results
+        ]
+
+    # Sometimes this field is not set
+    def rotten_tomatoes_score(self, result):
+        return None if "tomatoScore" not in result else result["tomatoScore"]
