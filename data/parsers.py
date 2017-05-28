@@ -1,0 +1,43 @@
+from data import TvShowSearchResult, MovieSearchResult
+
+
+class TvShowSearchResultsParser:
+    def __init__(self):
+        pass
+
+    def parse(self, tv_show_results):
+        return [
+            TvShowSearchResult(name=tv_show_result["title"],
+                               start_year=tv_show_result["startYear"],
+                               end_year=self.year(year=tv_show_result["endYear"]),
+                               rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
+            for tv_show_result in tv_show_results
+        ]
+
+    # Rotten Tomatoes represents the end year for a currently running TV series as 0
+    def year(self, year):
+        return None if year == 0 else year
+
+    # Sometimes this field is not set
+    def rotten_tomatoes_score(self, result):
+        return None if "meterScore" not in result else result["meterScore"]
+
+
+class MovieSearchResultsParser:
+    def __init__(self):
+        pass
+
+    def parse(self, movie_results):
+        return [
+            MovieSearchResult(name=movie_result["name"], year=movie_result["year"],
+                              rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
+                              cast=self.cast(cast_results=movie_result["castItems"]))
+            for movie_result in movie_results
+        ]
+
+    def cast(self, cast_results):
+        return [cast_member["name"] for cast_member in cast_results]
+
+    # Sometimes this field is not set
+    def rotten_tomatoes_score(self, result):
+        return None if "meterScore" not in result else result["meterScore"]
