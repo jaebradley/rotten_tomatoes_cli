@@ -13,7 +13,7 @@ class RatingFormatter:
 
     def rating_color(self, rating):
         if rating < 25:
-            return "grey"
+            return "cyan"
 
         elif rating < 50:
             return "green"
