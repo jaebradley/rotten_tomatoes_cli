@@ -1,24 +1,16 @@
 from rotten_tomatoes_client import RottenTomatoesClient
 
-from data import MovieSearchResult, SearchResult
+from data import SearchResult
+from data.parsers import TvShowSearchResultsParser, MovieSearchResultsParser
 
 
 class RottenTomatoesSearcher:
 
     def __init__(self):
-        pass
+        self.tv_shows_parser = TvShowSearchResultsParser()
+        self.movies_parser = MovieSearchResultsParser()
 
     def search(self, term):
         results = RottenTomatoesClient.search(term=term)
-        return SearchResult(movies=self.movies(movie_results=results["movies"]))
-
-    def movies(self, movie_results):
-        return [
-            MovieSearchResult(name=movie_result["name"], year=movie_result["year"],
-                              rotten_tomatoes_score=movie_result["score"],
-                              cast=self.cast(cast_results=movie_result["castItems"]))
-            for movie_result in movie_results
-        ]
-
-    def cast(self, cast_results):
-        return [cast_member.name for cast_member in cast_results]
+        return SearchResult(movies=self.movies_parser.parse(movie_results=results["movies"]),
+                            tv_shows=self.tv_shows_parser.parse(tv_show_results=results["tvSeries"]))
