@@ -2,6 +2,12 @@ import emoji
 
 
 class RatingFormatter:
+    ONE_HUNNID_EMOJI = emoji.emojize(":100:")
+    SHIT_EMOJI = emoji.emojize(":shit:")
+    GRIMACE_EMOJI = emoji.emojize(":grimace:")
+    OK_EMOJI = emoji.emojize(":ok_hand:")
+    GOOD_EMOJI = emoji.emojize(":+1:")
+    GREAT_EMOJI = emoji.emojize(":sparkles:")
 
     def __init__(self):
         pass
@@ -12,19 +18,19 @@ class RatingFormatter:
 
     def rating_emoji(self, rating):
         if rating == 100:
-            return emoji.emojize(":100:")
+            return RatingFormatter.ONE_HUNNID_EMOJI
 
         elif rating < 25:
-            return emoji.emojize(":shit:")
+            return RatingFormatter.SHIT_EMOJI
 
         elif rating < 50:
-            return emoji.emojize(":grimace:")
+            return RatingFormatter.GRIMACE_EMOJI
 
         elif rating < 75:
-            return emoji.emojize(":ok_hand:")
+            return RatingFormatter.OK_EMOJI
 
         elif rating < 90:
-            return emoji.emojize(":+1:")
+            return RatingFormatter.GOOD_EMOJI
 
         else:
-            return emoji.emojize(":sparkles:")
+            return RatingFormatter.GREAT_EMOJI
