@@ -1,12 +1,12 @@
 from terminaltables import SingleTable
-from termcolor import colored
 
 from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder, \
     BrowseMovieRowBuilder
+from tables.utilities import header
 
 
 class MovieSearchTableBuilder:
-    HEADERS = ["Film", "Score", "Year", "Cast"]
+    HEADERS = [header(text="Film"), header(text="Score"), header(text="Year"), header(text="Cast")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -28,7 +28,7 @@ class MovieSearchTableBuilder:
 
 
 class TvShowSearchTableBuilder:
-    HEADERS = ["TV Show", "Score", "Years"]
+    HEADERS = [header(text="TV Show"), header(text="Score"), header(text="Years")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -49,7 +49,7 @@ class TvShowSearchTableBuilder:
 
 
 class BrowseTvShowTableBuilder:
-    HEADERS = ["TV Show", "Score"]
+    HEADERS = [header(text="TV Show"), header(text="Score")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -69,7 +69,7 @@ class BrowseTvShowTableBuilder:
 
 
 class BrowseMovieTableBuilder:
-    HEADERS = ["", colored("Details", attrs=["bold", "underline"])]
+    HEADERS = ["", header(text="Details")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",

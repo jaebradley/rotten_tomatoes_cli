@@ -37,3 +37,6 @@ def clean_html(raw_html):
     cleanr = re.compile('<.*?>')
     clean_text = re.sub(cleanr, '', raw_html)
     return clean_text
+
+def header(text):
+    return colored(text=text, attrs=["bold", "underline"])
