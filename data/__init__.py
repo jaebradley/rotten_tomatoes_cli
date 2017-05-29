@@ -70,27 +70,66 @@ class BrowseTvShowCategory(Enum):
         raise LookupError("Unknown category for value: {value}".format(value=value))
 
 
-class BrowseMovieCategory(Enum):
+class BrowseMovieInTheaterCategory(Enum):
     opening = {
         "value": "opening",
         "client_value": MovieBrowsingCategory.opening_in_theaters
     },
-    in_theaters = {
-        "value": "in_theaters",
+    playing = {
+        "value": "playing",
         "client_value": MovieBrowsingCategory.in_theaters
     },
     upcoming = {
         "value": "upcoming",
         "client_value": MovieBrowsingCategory.upcoming_in_theaters
+    },
+    fresh = {
+        "value": "fresh",
+        "client_value": MovieBrowsingCategory.certified_fresh_in_theaters
     }
 
     @staticmethod
     def values():
-        return [category["value"] for category in BrowseMovieCategory]
+        return [category["value"] for category in BrowseMovieInTheaterCategory]
 
     @staticmethod
     def category(value):
-        for category in BrowseMovieCategory:
+        for category in BrowseMovieInTheaterCategory:
+            if category["value"] == value:
+                return category
+
+        raise LookupError("Unknown category for value: {value}".format(value=value))
+
+
+class BrowseStreamingMovieCategory(Enum):
+    all = {
+        "value": "all",
+        "client_value": MovieBrowsingCategory.all_dvd_and_streaming
+    },
+    top = {
+        "value": "top",
+        "client_value": MovieBrowsingCategory.top_dvd_and_streaming
+    },
+    new = {
+        "value": "new",
+        "client_value": MovieBrowsingCategory.new_dvd_and_streaming
+    },
+    upcoming = {
+        "value": "upcoming",
+        "client_value": MovieBrowsingCategory.upcoming_dvd_and_streaming
+    },
+    fresh = {
+        "value": "fresh",
+        "client_value": MovieBrowsingCategory.certified_fresh_dvd_and_streaming
+    }
+
+    @staticmethod
+    def values():
+        return [category["value"] for category in BrowseStreamingMovieCategory]
+
+    @staticmethod
+    def category(value):
+        for category in BrowseStreamingMovieCategory:
             if category["value"] == value:
                 return category
 

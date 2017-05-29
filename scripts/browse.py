@@ -2,7 +2,7 @@ import click
 
 from data.services import RottenTomatoesTvShowsBrowser
 from tables.builders import BrowseTvShowTableBuilder
-from data import BrowseTvShowCategory, BrowseMovieCategory
+from data import BrowseTvShowCategory, BrowseMovieInTheaterCategory
 
 
 @click.group()
@@ -22,10 +22,10 @@ def tv(category):
 
 
 @click.command()
-@click.argument("category", default=BrowseMovieCategory.opening["value"], type=click.Choice(BrowseMovieCategory.values()))
-def movie(category):
-    click.echo("movies")
+@click.argument("category", default=BrowseMovieInTheaterCategory.opening["value"], type=click.Choice(BrowseMovieInTheaterCategory.values()))
+def in_theaters(category):
+    click.echo("movies in theaters")
 
 
 browse.add_command(tv)
-browse.add_command(movie)
+browse.add_command(in_theaters)
