@@ -43,28 +43,24 @@ class BrowseTvShowResult:
 
 
 class BrowseTvShowCategory(Enum):
-
     new = {
-        "value": "new",
-        "client_value": TvBrowsingCategory.new_tv_tonight
+        "client_category": TvBrowsingCategory.new_tv_tonight
     },
     popular = {
-        "value": "popular",
-        "client_value": TvBrowsingCategory.most_popular
+        "client_category": TvBrowsingCategory.most_popular
     },
     fresh = {
-        "value": "fresh",
-        "client_value": TvBrowsingCategory.certified_fresh
+        "client_category": TvBrowsingCategory.certified_fresh
     }
 
     @staticmethod
-    def values():
-        return [category["value"] for category in BrowseTvShowCategory]
+    def names():
+        return [category.name for category in BrowseTvShowCategory]
 
     @staticmethod
     def category(value):
         for category in BrowseTvShowCategory:
-            if category["value"] == value:
+            if category.name == value.lower():
                 return category
 
         raise LookupError("Unknown category for value: {value}".format(value=value))
@@ -72,30 +68,26 @@ class BrowseTvShowCategory(Enum):
 
 class BrowseMovieInTheaterCategory(Enum):
     opening = {
-        "value": "opening",
-        "client_value": MovieBrowsingCategory.opening_in_theaters
+        "client_category": MovieBrowsingCategory.opening_in_theaters
     },
     playing = {
-        "value": "playing",
-        "client_value": MovieBrowsingCategory.in_theaters
+        "client_categoyr": MovieBrowsingCategory.in_theaters
     },
     upcoming = {
-        "value": "upcoming",
-        "client_value": MovieBrowsingCategory.upcoming_in_theaters
+        "client_category": MovieBrowsingCategory.upcoming_in_theaters
     },
     fresh = {
-        "value": "fresh",
-        "client_value": MovieBrowsingCategory.certified_fresh_in_theaters
+        "client_category": MovieBrowsingCategory.certified_fresh_in_theaters
     }
 
     @staticmethod
-    def values():
-        return [category["value"] for category in BrowseMovieInTheaterCategory]
+    def names():
+        return [category.name for category in BrowseMovieInTheaterCategory]
 
     @staticmethod
     def category(value):
         for category in BrowseMovieInTheaterCategory:
-            if category["value"] == value:
+            if category.name == value.lower():
                 return category
 
         raise LookupError("Unknown category for value: {value}".format(value=value))
@@ -103,34 +95,29 @@ class BrowseMovieInTheaterCategory(Enum):
 
 class BrowseStreamingMovieCategory(Enum):
     all = {
-        "value": "all",
-        "client_value": MovieBrowsingCategory.all_dvd_and_streaming
+        "client_category": MovieBrowsingCategory.all_dvd_and_streaming
     },
     top = {
-        "value": "top",
-        "client_value": MovieBrowsingCategory.top_dvd_and_streaming
+        "client_category": MovieBrowsingCategory.top_dvd_and_streaming
     },
     new = {
-        "value": "new",
-        "client_value": MovieBrowsingCategory.new_dvd_and_streaming
+        "client_category": MovieBrowsingCategory.new_dvd_and_streaming
     },
     upcoming = {
-        "value": "upcoming",
-        "client_value": MovieBrowsingCategory.upcoming_dvd_and_streaming
+        "client_category": MovieBrowsingCategory.upcoming_dvd_and_streaming
     },
     fresh = {
-        "value": "fresh",
-        "client_value": MovieBrowsingCategory.certified_fresh_dvd_and_streaming
+        "client_category": MovieBrowsingCategory.certified_fresh_dvd_and_streaming
     }
 
     @staticmethod
-    def values():
-        return [category["value"] for category in BrowseStreamingMovieCategory]
+    def names():
+        return [category.name for category in BrowseStreamingMovieCategory]
 
     @staticmethod
     def category(value):
         for category in BrowseStreamingMovieCategory:
-            if category["value"] == value:
+            if category.name == value.lower():
                 return category
 
         raise LookupError("Unknown category for value: {value}".format(value=value))
@@ -138,42 +125,35 @@ class BrowseStreamingMovieCategory(Enum):
 
 class MovieService(Enum):
     amazon = {
-        "value": "amazon",
-        "client_value": Service.amazon
+        "client_service": Service.amazon
     },
     prime = {
-        "value": "prime",
-        "client_value": Service.amazon_prime
+        "client_service": Service.amazon_prime
     },
     hbo = {
-        "value": "hbo",
-        "client_value": Service.hbo_go
+        "client_service": Service.hbo_go
     },
     itunes = {
-        "value": "itunes",
-        "client_value": Service.itunes
+        "client_service": Service.itunes
     },
     netflix = {
-        "value": "netflix",
-        "client_value": Service.netflix
+        "client_service": Service.netflix
     },
     vudu = {
-        "value": "vudu",
-        "client_value": Service.vudu
+        "client_service": Service.vudu
     },
     fandango = {
-        "value": "fandango",
-        "client_value": Service.fandango_now
+        "client_service": Service.fandango_now
     }
 
     @staticmethod
-    def values():
-        return [service["value"] for service in MovieService]
+    def names():
+        return [service.name for service in MovieService]
 
     @staticmethod
     def service(value):
         for service in MovieService:
-            if service["value"] == value:
+            if service.name == value.lower():
                 return service
 
         raise LookupError("Unknown service for value: {value}".format(value=value))
@@ -181,62 +161,50 @@ class MovieService(Enum):
 
 class MovieGenre(Enum):
     action = {
-        "value": "action",
-        "client_value": Genre.action
+        "client_genre": Genre.action
     },
     animation = {
-        "value": "animation",
-        "client_value": Genre.animation
+        "client_genre": Genre.animation
     },
     art_and_foreign = {
-        "value": "art&foreign",
-        "client_value": Genre.art_and_foreign
+        "client_genre": Genre.art_and_foreign
     },
     classics = {
-        "value": "classics",
-        "client_value": Genre.classics
+        "client_genre": Genre.classics
     },
     comedy = {
-        "value": "comedy",
-        "client_value": Genre.comedy
+        "client_genre": Genre.comedy
     },
     documentary = {
-        "value": "documentary",
-        "client_value": Genre.documentary
+        "client_genre": Genre.documentary
     },
     drama = {
-        "value": "drama",
-        "client_value": Genre.drama
+        "client_genre": Genre.drama
     },
     horror = {
-        "value": "horror",
-        "client_value": Genre.horror
+        "client_genre": Genre.horror
     },
     family = {
-        "value": "family",
-        "client_value": Genre.kids_and_family
+        "client_genre": Genre.kids_and_family
     },
     mystery = {
-        "value": "mystery",
-        "client_value": Genre.mystery
+        "client_genre": Genre.mystery
     },
     romance = {
-        "value": "romance",
-        "client_value": Genre.romance
+        "client_genre": Genre.romance
     },
     sci_fi_and_fantasy = {
-        "value": "scifi",
-        "client_value": Genre.sci_fi_and_fantasy
+        "client_genre": Genre.sci_fi_and_fantasy
     }
 
     @staticmethod
-    def values():
-        return [genre["value"] for genre in MovieGenre]
+    def names():
+        return [genre.name for genre in MovieGenre]
 
     @staticmethod
     def genre(value):
         for genre in MovieGenre:
-            if genre["value"] == value:
+            if genre.name == value.lower():
                 return genre
 
         raise LookupError("Unknown genre for value: {value}".format(value=value))
@@ -244,22 +212,20 @@ class MovieGenre(Enum):
 
 class BrowseSortBy(Enum):
     popularity = {
-        "value": "popularity",
         "client_value": SortBy.popularity
     },
     release = {
-        "value": "release",
         "client_value": SortBy.release
     }
 
     @staticmethod
-    def values():
-        return [sort_by["value"] for sort_by in BrowseSortBy]
+    def names():
+        return [sort_by.name for sort_by in BrowseSortBy]
 
     @staticmethod
     def sort_by(value):
         for sort_by in BrowseSortBy:
-            if sort_by["value"] == value:
+            if sort_by.name == value.lower():
                 return sort_by
 
         raise LookupError("Unknown sort by option for value: {value}".format(value=value))
