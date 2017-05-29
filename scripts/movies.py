@@ -1,14 +1,14 @@
 import click
 
-from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService
+from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre
 
 
 @click.group()
 @click.option("--minimum_rating", "-min", default=70)
 @click.option("--maximum_rating", "-max", default=100)
 @click.option("--certified_fresh", "-f", default=False)
-@click.option("--service", "-s", multiple=True, type=click.Choice(MovieService.values()))
-@click.option("--genre", "-g", multiple=True)
+@click.option("--service", "-s", default=None, multiple=True, type=click.Choice(MovieService.values()))
+@click.option("--genre", "-g", default=None, multiple=True, type=click.Choice(MovieGenre.values()))
 @click.option("--sort_by", "-sb")
 def movies():
     pass

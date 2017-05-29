@@ -1,6 +1,6 @@
 from enum import Enum
 
-from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory, Service
+from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory, Service, Genre
 
 
 class MovieSearchResult:
@@ -171,9 +171,72 @@ class MovieService(Enum):
         return [category["value"] for category in MovieService]
 
     @staticmethod
-    def category(value):
-        for category in MovieService:
-            if category["value"] == value:
-                return category
+    def service(value):
+        for service in MovieService:
+            if service["value"] == value:
+                return service
 
         raise LookupError("Unknown service for value: {value}".format(value=value))
+
+
+class MovieGenre(Enum):
+    action = {
+        "value": "action",
+        "client_value": Genre.action
+    },
+    animation = {
+        "value": "animation",
+        "client_value": Genre.animation
+    },
+    art_and_foreign = {
+        "value": "art&foreign",
+        "client_value": Genre.art_and_foreign
+    },
+    classics = {
+        "value": "classics",
+        "client_value": Genre.classics
+    },
+    comedy = {
+        "value": "comedy",
+        "client_value": Genre.comedy
+    },
+    documentary = {
+        "value": "documentary",
+        "client_value": Genre.documentary
+    },
+    drama = {
+        "value": "drama",
+        "client_value": Genre.drama
+    },
+    horror = {
+        "value": "horror",
+        "client_value": Genre.horror
+    },
+    family = {
+        "value": "family",
+        "client_value": Genre.kids_and_family
+    },
+    mystery = {
+        "value": "mystery",
+        "client_value": Genre.mystery
+    },
+    romance = {
+        "value": "romance",
+        "client_value": Genre.romance
+    },
+    sci_fi_and_fantasy = {
+        "value": "scifi",
+        "client_value": Genre.sci_fi_and_fantasy
+    }
+
+    @staticmethod
+    def values():
+        return [category["value"] for category in MovieGenre]
+
+    @staticmethod
+    def genre(value):
+        for genre in MovieGenre:
+            if genre["value"] == value:
+                return genre
+
+        raise LookupError("Unknown genre for value: {value}".format(value=value))
