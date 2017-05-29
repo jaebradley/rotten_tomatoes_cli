@@ -1,6 +1,6 @@
 import click
 
-from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre
+from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre, BrowseSortBy
 
 
 @click.group()
@@ -9,7 +9,7 @@ from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, Mov
 @click.option("--certified_fresh", "-f", default=False)
 @click.option("--service", "-s", default=None, multiple=True, type=click.Choice(MovieService.values()))
 @click.option("--genre", "-g", default=None, multiple=True, type=click.Choice(MovieGenre.values()))
-@click.option("--sort_by", "-sb")
+@click.option("--sort_by", "-sb", default=BrowseSortBy.popularity, type=click.Choice(BrowseSortBy.values()))
 def movies():
     pass
 

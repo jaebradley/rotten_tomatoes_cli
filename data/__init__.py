@@ -1,6 +1,6 @@
 from enum import Enum
 
-from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory, Service, Genre
+from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory, Service, Genre, SortBy
 
 
 class MovieSearchResult:
@@ -168,7 +168,7 @@ class MovieService(Enum):
 
     @staticmethod
     def values():
-        return [category["value"] for category in MovieService]
+        return [service["value"] for service in MovieService]
 
     @staticmethod
     def service(value):
@@ -231,7 +231,7 @@ class MovieGenre(Enum):
 
     @staticmethod
     def values():
-        return [category["value"] for category in MovieGenre]
+        return [genre["value"] for genre in MovieGenre]
 
     @staticmethod
     def genre(value):
@@ -240,3 +240,26 @@ class MovieGenre(Enum):
                 return genre
 
         raise LookupError("Unknown genre for value: {value}".format(value=value))
+
+
+class BrowseSortBy(Enum):
+    popularity = {
+        "value": "popularity",
+        "client_value": SortBy.popularity
+    },
+    release = {
+        "value": "release",
+        "client_value": SortBy.release
+    }
+
+    @staticmethod
+    def values():
+        return [sort_by["value"] for sort_by in BrowseSortBy]
+
+    @staticmethod
+    def sort_by(value):
+        for sort_by in BrowseSortBy:
+            if sort_by["value"] == value:
+                return sort_by
+
+        raise LookupError("Unknown sort by option for value: {value}".format(value=value))
