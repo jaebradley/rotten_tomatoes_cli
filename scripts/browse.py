@@ -2,8 +2,7 @@ import click
 
 from data.services import RottenTomatoesTvShowsBrowser
 from tables.builders import BrowseTvShowTableBuilder
-from rotten_tomatoes_client import TvBrowsingCategory
-from data import BrowseTvShowCategory
+from data import BrowseTvShowCategory, BrowseMovieCategory
 
 
 @click.group()
@@ -23,7 +22,7 @@ def tv(category):
 
 
 @click.command()
-@click.argument("category", default="new_tonight", type=click.Choice(["new_tonight", "most_popular", "certified_fresh"]))
+@click.argument("category", default=BrowseMovieCategory.opening["value"], type=click.Choice(BrowseMovieCategory.values()))
 def movie(category):
     click.echo("movies")
 

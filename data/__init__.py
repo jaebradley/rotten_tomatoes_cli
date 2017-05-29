@@ -1,6 +1,6 @@
 from enum import Enum
 
-from rotten_tomatoes_client import TvBrowsingCategory
+from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory
 
 
 class MovieSearchResult:
@@ -64,6 +64,33 @@ class BrowseTvShowCategory(Enum):
     @staticmethod
     def category(value):
         for category in BrowseTvShowCategory:
+            if category["value"] == value:
+                return category
+
+        raise LookupError("Unknown category for value: {value}".format(value=value))
+
+
+class BrowseMovieCategory(Enum):
+    opening = {
+        "value": "opening",
+        "client_value": MovieBrowsingCategory.opening_in_theaters
+    },
+    in_theaters = {
+        "value": "in_theaters",
+        "client_value": MovieBrowsingCategory.in_theaters
+    },
+    upcoming = {
+        "value": "upcoming",
+        "client_value": MovieBrowsingCategory.upcoming_in_theaters
+    }
+
+    @staticmethod
+    def values():
+        return [category["value"] for category in BrowseMovieCategory]
+
+    @staticmethod
+    def category(value):
+        for category in BrowseMovieCategory:
             if category["value"] == value:
                 return category
 
