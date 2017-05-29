@@ -1,13 +1,13 @@
 from textwrap import wrap
 from termcolor import colored
 
-from tables.utilities import RatingFormatter, as_ascii, clean_html, header
+from tables.utilities import RottenTomatoesScoreFormatter, as_ascii, clean_html, header
 
 
 class MovieSearchRowBuilder:
 
     def __init__(self):
-        self.rating_formatter = RatingFormatter()
+        self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, movie):
         return [self.name(name=movie.name), self.rating_formatter.format(rating=movie.rotten_tomatoes_score),
@@ -23,7 +23,7 @@ class MovieSearchRowBuilder:
 
 class TvShowSearchRowBuilder:
     def __init__(self):
-        self.rating_formatter = RatingFormatter()
+        self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, tv_show):
         return [self.name(name=tv_show.name), self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score),
@@ -40,7 +40,7 @@ class TvShowSearchRowBuilder:
 
 class BrowseTvShowRowBuilder:
     def __init__(self):
-        self.rating_formatter = RatingFormatter()
+        self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, tv_show):
         return [tv_show.title, self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score)]
@@ -54,7 +54,7 @@ class BrowseMovieRowBuilder:
     ACTORS_HEADER = header(text="Actors")
 
     def __init__(self):
-        self.rating_formatter = RatingFormatter()
+        self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, movie):
         return [self.summary(movie=movie), self.details(movie=movie)]

@@ -2,7 +2,7 @@ from termcolor import colored
 import re
 
 
-class RatingFormatter:
+class RottenTomatoesScoreFormatter:
     def __init__(self):
         pass
 
