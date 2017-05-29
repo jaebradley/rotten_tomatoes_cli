@@ -1,6 +1,9 @@
 import click
 
 from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre, BrowseSortBy
+from data.services import RottenTomatoesMoviesBrowser
+from rotten_tomatoes_client import MovieBrowsingQuery
+from tables.builders import BrowseMovie
 
 
 @click.group()
@@ -18,15 +21,23 @@ def movies(context, minimum_rating, maximum_rating, certified_fresh, service, ge
     context.obj["CERTIFIED_FRESH"] = certified_fresh
     context.obj["SERVICE"] = service
     context.obj["GENRE"] = genre
-    context.obj["SORT)BY"] = sort_by
+    context.obj["SORT_BY"] = sort_by
 
 
 @click.command()
 @click.argument("category", default=BrowseMovieInTheaterCategory.opening.name, type=click.Choice(BrowseMovieInTheaterCategory.names()))
 @click.pass_context
 def in_theaters(context, category):
-    click.echo(context)
-    click.echo("movies in theaters")
+    services = [service[0]["client_service"] for service in context.obj["SERVICE"]]
+    genres = [genre[0]["client_genre"] for genre in context.obj["GENRE"]]
+    query = MovieBrowsingQuery(minimum_rating=context.obj["MINIMUM_RATING"],
+                               maximum_rating=context.obj["MAXIMUM_RATING"],
+                               certified_fresh=context.obj["CERTIFIED_FRESH"], services=services, genres=genres,
+                               sort_by=context.obj["SORT_BY"][0]["client_value"],
+                               category=category[0]["client_category"])
+    browser = RottenTomatoesMoviesBrowser()
+    results = browser.browse(query=query)
+
 
 
 @click.command()

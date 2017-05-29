@@ -29,3 +29,13 @@ class BrowseTvShowRowBuilder:
 
     def build(self, tv_show):
         return [tv_show.title, self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score)]
+
+
+class BrowseMovieRowBuilder:
+    def __init__(self):
+        self.rating_formatter = RatingFormatter()
+
+    def build(self, movie):
+        return [movie.title, self.rating_formatter.format(rating=movie.rotten_tomatoes_score), movie.synopsis,
+                movie.runtime, movie.theater_release_date, movie.dvd_release_date, movie.mpaa_rating,
+                ",".join(movie.actors)]
