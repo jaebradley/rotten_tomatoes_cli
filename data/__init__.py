@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class MovieSearchResult:
     def __init__(self, name, year, rotten_tomatoes_score, cast):
         self.name = name

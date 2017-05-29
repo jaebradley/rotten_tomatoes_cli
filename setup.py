@@ -14,7 +14,7 @@ setup(
     entry_points={
         'console_scripts': [
             # 'search = scripts.search:search'
-            'browse = scripts.browse:browse'
+            'rotten= scripts.rotten:rotten'
         ],
     }
 )
