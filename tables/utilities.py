@@ -1,5 +1,6 @@
-from termcolor import colored
 import re
+
+from termcolor import colored
 
 
 class RottenTomatoesScoreFormatter:

@@ -1,8 +1,8 @@
 import click
+from rotten_tomatoes_client import MovieBrowsingQuery
 
 from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre, BrowseSortBy
 from data.services import RottenTomatoesMoviesBrowser
-from rotten_tomatoes_client import MovieBrowsingQuery
 from tables.builders import BrowseMovieTableBuilder
 
 browser = RottenTomatoesMoviesBrowser()

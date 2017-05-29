@@ -1,4 +1,5 @@
 from textwrap import wrap
+
 from termcolor import colored
 
 from tables.utilities import RottenTomatoesScoreFormatter, MpaaRatingFormatter, as_ascii, clean_html, formatted_header
