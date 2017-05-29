@@ -25,14 +25,8 @@ def movies():
 @click.option("--sort_by", default=BrowseSortBy.popularity.name, type=click.Choice(BrowseSortBy.names()))
 def theaters(category, minimum_rating, maximum_rating, certified_fresh, service, genre, sort_by):
     theaters_category = BrowseMovieInTheaterCategory.category(value=category).value[0]["client_category"]
-    results = browser.browse(query(category=theaters_category, minimum_rating=minimum_rating,
-                                   maximum_rating=maximum_rating, certified_fresh=certified_fresh,
-                                   services=service, genres=genre, sort_by=sort_by))
-
-    if len(results) > 0:
-        click.echo(table_builder.build(movies=results))
-    else:
-        click.echo("No results")
+    build(category=theaters_category, minimum_rating=minimum_rating, maximum_rating=maximum_rating,
+          certified_fresh=certified_fresh, services=service, genres=genre, sort_by=sort_by)
 
 
 @click.command()
@@ -46,9 +40,14 @@ def theaters(category, minimum_rating, maximum_rating, certified_fresh, service,
 @click.option("--sort_by", default=BrowseSortBy.popularity.name, type=click.Choice(BrowseSortBy.names()))
 def streaming(category, minimum_rating, maximum_rating, certified_fresh, service, genre, sort_by):
     streaming_category = BrowseStreamingMovieCategory.category(value=category).value[0]["client_category"]
-    results = browser.browse(query(category=streaming_category, minimum_rating=minimum_rating,
+    build(category=streaming_category, minimum_rating=minimum_rating, maximum_rating=maximum_rating,
+          certified_fresh=certified_fresh, services=service, genres=genre, sort_by=sort_by)
+
+
+def build(category, minimum_rating, maximum_rating, certified_fresh, services, genres, sort_by):
+    results = browser.browse(query(category=category, minimum_rating=minimum_rating,
                                    maximum_rating=maximum_rating, certified_fresh=certified_fresh,
-                                   services=service, genres=genre, sort_by=sort_by))
+                                   services=services, genres=genres, sort_by=sort_by))
     if len(results) > 0:
         click.echo(table_builder.build(movies=results))
     else:
@@ -63,7 +62,6 @@ def query(category, minimum_rating, maximum_rating, certified_fresh, services, g
                               certified_fresh=certified_fresh, services=services, genres=genres,
                               sort_by=BrowseSortBy.sort_by(value=sort_by).value[0]["client_value"],
                               category=category)
-
 
 
 movies.add_command(theaters)
