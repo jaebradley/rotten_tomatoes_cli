@@ -1,7 +1,7 @@
 from rotten_tomatoes_client import RottenTomatoesClient
 
 from data import SearchResult
-from data.parsers import TvShowSearchResultsParser, MovieSearchResultsParser, TvShowBrowseResultsParser
+from data.parsers import TvShowSearchResultsParser, MovieSearchResultsParser, TvShowBrowseResultsParser, MovieBrowseResultsParser
 
 
 class RottenTomatoesSearcher:
@@ -23,3 +23,12 @@ class RottenTomatoesTvShowsBrowser:
     def browse(self, category):
         results = RottenTomatoesClient.browse_tv_shows(category=category)
         return self.tv_shows_parser.parse(tv_show_results=results["results"])
+
+
+class RottenTomatoesMoviesBrowser:
+    def __init__(self):
+        self.parser = MovieBrowseResultsParser()
+
+    def browse(self, query):
+        results = RottenTomatoesClient.browse_movies(query=query)
+        return self.parser.parse(movie_results=results)
