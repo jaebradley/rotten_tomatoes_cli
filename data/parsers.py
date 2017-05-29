@@ -65,7 +65,7 @@ class MovieBrowseResultsParser:
     def parse(self, movie_results):
         return [
             BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
-                              synopsis=movie_result["synopsis"], runtime=movie_result["runtime"],
+                              synopsis=movie_result["synopsis"], runtime=self.runtime(result=movie_result),
                               theater_release_date=movie_result["theaterReleaseDate"],
                               dvd_release_date=self.dvd_release_date(result=movie_result),
                               mpaa_rating=movie_result["mpaaRating"], actors=movie_result["actors"])
@@ -79,3 +79,6 @@ class MovieBrowseResultsParser:
     # Sometimes this field is not set
     def dvd_release_date(self, result):
         return None if "dvdReleaseDate" not in result else result["dvdReleaseDate"]
+
+    def runtime(self, result):
+        return None if "runtime" not in result else result["runtime"]

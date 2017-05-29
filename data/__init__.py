@@ -65,7 +65,7 @@ class BrowseTvShowCategory(Enum):
             if category.name == value.lower():
                 return category
 
-        raise LookupError("Unknown category for value: {value}".format(value=value))
+        raise LookupError("Unknown tv show category for value: {value}".format(value=value))
 
 
 class BrowseMovieInTheaterCategory(Enum):
@@ -73,7 +73,7 @@ class BrowseMovieInTheaterCategory(Enum):
         "client_category": MovieBrowsingCategory.opening_in_theaters
     },
     playing = {
-        "client_categoyr": MovieBrowsingCategory.in_theaters
+        "client_category": MovieBrowsingCategory.in_theaters
     },
     upcoming = {
         "client_category": MovieBrowsingCategory.upcoming_in_theaters
@@ -92,7 +92,7 @@ class BrowseMovieInTheaterCategory(Enum):
             if category.name == value.lower():
                 return category
 
-        raise LookupError("Unknown category for value: {value}".format(value=value))
+        raise LookupError("Unknown movie in theater category for value: {value}".format(value=value))
 
 
 class BrowseStreamingMovieCategory(Enum):
@@ -122,7 +122,7 @@ class BrowseStreamingMovieCategory(Enum):
             if category.name == value.lower():
                 return category
 
-        raise LookupError("Unknown category for value: {value}".format(value=value))
+        raise LookupError("Unknown streaming movie category for value: {value}".format(value=value))
 
 
 class MovieService(Enum):
@@ -158,7 +158,7 @@ class MovieService(Enum):
             if service.name == value.lower():
                 return service
 
-        raise LookupError("Unknown service for value: {value}".format(value=value))
+        raise LookupError("Unknown movie service for value: {value}".format(value=value))
 
 
 class MovieGenre(Enum):
@@ -209,7 +209,7 @@ class MovieGenre(Enum):
             if genre.name == value.lower():
                 return genre
 
-        raise LookupError("Unknown genre for value: {value}".format(value=value))
+        raise LookupError("Unknown movie genre for value: {value}".format(value=value))
 
 
 class BrowseSortBy(Enum):
@@ -230,4 +230,4 @@ class BrowseSortBy(Enum):
             if sort_by.name == value.lower():
                 return sort_by
 
-        raise LookupError("Unknown sort by option for value: {value}".format(value=value))
+        raise LookupError("Unknown movie sort by option for value: {value}".format(value=value))
