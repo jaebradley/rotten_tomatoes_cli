@@ -1,6 +1,7 @@
 from terminaltables import SingleTable
 
-from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder
+from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder, \
+    BrowseMovieRowBuilder
 
 
 class MovieSearchTableBuilder:
@@ -64,3 +65,29 @@ class BrowseTvShowTableBuilder:
     def rows(self, tv_shows):
         sorted_tv_shows = sorted(tv_shows, key=lambda tv_show: tv_show.rotten_tomatoes_score, reverse=True)
         return [self.row_builder.build(tv_show=tv_show) for tv_show in sorted_tv_shows]
+
+
+class BrowseMovieTableBuilder:
+    HEADERS = ["Film", "Score", "Synopsis", "Runtime", "Theater Release", "DVD Release", "Rating", "Actors"]
+    COLUMN_JUSTIFICATION = {
+        0: "left",
+        1: "left",
+        2: "left",
+        3: "left",
+        4: "left",
+        5: "left",
+        6: "left",
+        7: "left"
+    }
+
+    def __init__(self):
+        self.row_builder = BrowseMovieRowBuilder()
+
+    def build(self, movies):
+        table = SingleTable([BrowseMovieTableBuilder.HEADERS] + self.rows(movies=movies))
+        table.justify_columns = BrowseMovieTableBuilder.COLUMN_JUSTIFICATION
+        return table.table
+
+    def rows(self, movies):
+        sorted_movies = sorted(movies, key=lambda movie: movie.rotten_tomatoes_score, reverse=True)
+        return [self.row_builder.build(movie=movie) for movie in sorted_movies]
