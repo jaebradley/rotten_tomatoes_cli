@@ -1,5 +1,7 @@
 from enum import Enum
 
+from rotten_tomatoes_client import TvBrowsingCategory
+
 
 class MovieSearchResult:
     def __init__(self, name, year, rotten_tomatoes_score, cast):
@@ -38,3 +40,31 @@ class BrowseTvShowResult:
     def __init__(self, title, rotten_tomatoes_score):
         self.title = title
         self.rotten_tomatoes_score = rotten_tomatoes_score
+
+
+class BrowseTvShowCategory(Enum):
+
+    new = {
+        "value": "new",
+        "client_value": TvBrowsingCategory.new_tv_tonight
+    },
+    popular = {
+        "value": "popular",
+        "client_value": TvBrowsingCategory.most_popular
+    },
+    fresh = {
+        "value": "fresh",
+        "client_value": TvBrowsingCategory.certified_fresh
+    }
+
+    @staticmethod
+    def values():
+        return [category["value"] for category in BrowseTvShowCategory]
+
+    @staticmethod
+    def category(value):
+        for category in BrowseTvShowCategory:
+            if category["value"] == value:
+                return category
+
+        raise LookupError("Unknown category for value: {value}".format(value=value))
