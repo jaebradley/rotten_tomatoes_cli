@@ -1,4 +1,5 @@
 from termcolor import colored
+import re
 
 
 class RatingFormatter:
@@ -26,3 +27,13 @@ class RatingFormatter:
 
         else:
             return "red"
+
+
+def as_ascii(text):
+    return text.encode("ascii", "ignore").decode("ascii")
+
+
+def clean_html(raw_html):
+    cleanr = re.compile('<.*?>')
+    clean_text = re.sub(cleanr, '', raw_html)
+    return clean_text

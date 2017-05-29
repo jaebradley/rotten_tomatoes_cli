@@ -69,17 +69,10 @@ class BrowseTvShowTableBuilder:
 
 
 class BrowseMovieTableBuilder:
-    HEADERS = ["",
-               colored("Score", attrs=["bold", "underline"]),
-               colored("Runtime", attrs=["bold", "underline"]),
-               colored("Release", attrs=["bold", "underline"]),
-               colored("Actors", attrs=["bold", "underline"])]
+    HEADERS = ["", colored("Details", attrs=["bold", "underline"])]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
-        2: "left",
-        3: "left",
-        5: "left",
     }
 
     def __init__(self):
