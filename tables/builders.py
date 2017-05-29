@@ -20,6 +20,7 @@ class MovieSearchTableBuilder:
     def build(self, movies):
         table = SingleTable([MovieSearchTableBuilder.HEADERS] + self.rows(movies=movies))
         table.justify_columns = MovieSearchTableBuilder.COLUMN_JUSTIFICATION
+        table.inner_row_border = True
         return table.table
 
     def rows(self, movies):
@@ -41,6 +42,7 @@ class TvShowSearchTableBuilder:
     def build(self, tv_shows):
         table = SingleTable([TvShowSearchTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
         table.justify_columns = TvShowSearchTableBuilder.COLUMN_JUSTIFICATION
+        table.inner_row_border = True
         return table.table
 
     def rows(self, tv_shows):
@@ -61,6 +63,7 @@ class BrowseTvShowTableBuilder:
     def build(self, tv_shows):
         table = SingleTable([BrowseTvShowTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
         table.justify_columns = BrowseTvShowTableBuilder.COLUMN_JUSTIFICATION
+        table.inner_row_border = True
         return table.table
 
     def rows(self, tv_shows):

@@ -1,7 +1,7 @@
 from textwrap import wrap
 from termcolor import colored
 
-from tables.utilities import RatingFormatter, as_ascii, clean_html
+from tables.utilities import RatingFormatter, as_ascii, clean_html, header
 
 
 class MovieSearchRowBuilder:
@@ -10,7 +10,15 @@ class MovieSearchRowBuilder:
         self.rating_formatter = RatingFormatter()
 
     def build(self, movie):
-        return [movie.name, self.rating_formatter.format(rating=movie.rotten_tomatoes_score), movie.year, ", ".join(movie.cast)]
+        return [self.name(name=movie.name), self.rating_formatter.format(rating=movie.rotten_tomatoes_score),
+                movie.year, self.cast(cast=movie.cast)]
+
+    def name(self, name):
+        wrapped_name = wrap(text=as_ascii(text=name), width=30)
+        return "\n".join([colored(value, attrs=["bold"]) for value in wrapped_name])
+
+    def cast(self, cast):
+        return "\n".join([as_ascii(text=actor) for actor in cast])
 
 
 class TvShowSearchRowBuilder:
@@ -18,12 +26,16 @@ class TvShowSearchRowBuilder:
         self.rating_formatter = RatingFormatter()
 
     def build(self, tv_show):
-        return [tv_show.name, self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score),
+        return [self.name(name=tv_show.name), self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score),
                 self.format_years(start_year=tv_show.start_year, end_year=tv_show.end_year)]
 
     def format_years(self, start_year, end_year):
         end_year_value = "" if end_year is None else end_year
         return "{start_year}-{end_year}".format(start_year=start_year, end_year=end_year_value)
+
+    def name(self, name):
+        wrapped_name = wrap(text=as_ascii(text=name), width=30)
+        return "\n".join([colored(value, attrs=["bold"]) for value in wrapped_name])
 
 
 class BrowseTvShowRowBuilder:
@@ -35,11 +47,11 @@ class BrowseTvShowRowBuilder:
 
 
 class BrowseMovieRowBuilder:
-    SCORE_HEADER = colored(text="Score", attrs=["bold", "underline"])
-    RATING_HEADER = colored(text="Rating", attrs=["bold", "underline"])
-    RUNTIME_HEADER = colored(text="Runtime", attrs=["bold", "underline"])
-    RELEASE_HEADER = colored(text="Release", attrs=["bold", "underline"])
-    ACTORS_HEADER = colored(text="Actors", attrs=["bold", "underline"])
+    SCORE_HEADER = header(text="Score")
+    RATING_HEADER = header(text="Rating")
+    RUNTIME_HEADER = header(text="Runtime")
+    RELEASE_HEADER = header(text="Release")
+    ACTORS_HEADER = header(text="Actors")
 
     def __init__(self):
         self.rating_formatter = RatingFormatter()
