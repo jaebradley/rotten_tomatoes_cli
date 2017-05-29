@@ -13,7 +13,6 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            # 'search = scripts.search:search'
             'rotten= scripts.rotten:rotten'
         ],
     }
