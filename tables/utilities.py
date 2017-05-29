@@ -65,5 +65,5 @@ def clean_html(raw_html):
     clean_text = re.sub(cleanr, '', raw_html)
     return clean_text
 
-def header(text):
+def formatted_header(text):
     return colored(text=text, attrs=["bold", "underline"])

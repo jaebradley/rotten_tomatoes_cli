@@ -2,11 +2,11 @@ from terminaltables import SingleTable
 
 from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder, \
     BrowseMovieRowBuilder
-from tables.utilities import header
+from tables.utilities import formatted_header
 
 
 class MovieSearchTableBuilder:
-    HEADERS = [header(text="Film"), header(text="Score"), header(text="Year"), header(text="Cast")]
+    HEADERS = [formatted_header(text="Film"), formatted_header(text="Score"), formatted_header(text="Year"), formatted_header(text="Cast")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -29,7 +29,7 @@ class MovieSearchTableBuilder:
 
 
 class TvShowSearchTableBuilder:
-    HEADERS = [header(text="TV Show"), header(text="Score"), header(text="Years")]
+    HEADERS = [formatted_header(text="TV Show"), formatted_header(text="Score"), formatted_header(text="Years")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -51,7 +51,7 @@ class TvShowSearchTableBuilder:
 
 
 class BrowseTvShowTableBuilder:
-    HEADERS = [header(text="TV Show"), header(text="Score")]
+    HEADERS = [formatted_header(text="TV Show"), formatted_header(text="Score")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -72,7 +72,7 @@ class BrowseTvShowTableBuilder:
 
 
 class BrowseMovieTableBuilder:
-    HEADERS = ["", header(text="Details")]
+    HEADERS = ["", formatted_header(text="Details")]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",

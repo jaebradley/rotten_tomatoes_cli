@@ -1,7 +1,7 @@
 from textwrap import wrap
 from termcolor import colored
 
-from tables.utilities import RottenTomatoesScoreFormatter, MpaaRatingFormatter, as_ascii, clean_html, header
+from tables.utilities import RottenTomatoesScoreFormatter, MpaaRatingFormatter, as_ascii, clean_html, formatted_header
 
 
 class MovieSearchRowBuilder:
@@ -47,11 +47,11 @@ class BrowseTvShowRowBuilder:
 
 
 class BrowseMovieRowBuilder:
-    SCORE_HEADER = header(text="Score")
-    RATING_HEADER = header(text="Rating")
-    RUNTIME_HEADER = header(text="Runtime")
-    RELEASE_HEADER = header(text="Release")
-    ACTORS_HEADER = header(text="Actors")
+    SCORE_HEADER = formatted_header(text="Score")
+    RATING_HEADER = formatted_header(text="Rating")
+    RUNTIME_HEADER = formatted_header(text="Runtime")
+    RELEASE_HEADER = formatted_header(text="Release")
+    ACTORS_HEADER = formatted_header(text="Actors")
 
     def __init__(self):
         self.rotten_tomatoes_score_formatter = RottenTomatoesScoreFormatter()
