@@ -29,6 +29,33 @@ class RottenTomatoesScoreFormatter:
             return "red"
 
 
+class MpaaRatingFormatter:
+    def __init__(self):
+        pass
+
+    def format(self, rating):
+        return colored(text=rating, color=self.rating_color(rating=rating))
+
+    def rating_color(self, rating):
+        if rating == "NR":
+            return "white"
+
+        elif rating == "G":
+            return "green"
+
+        elif rating == "PG":
+            return "cyan"
+
+        elif rating == "PG13":
+            return "yellow"
+
+        elif rating == "R":
+            return "red"
+
+        else:
+            return "magenta"
+
+
 def as_ascii(text):
     return text.encode("ascii", "ignore").decode("ascii")
 
