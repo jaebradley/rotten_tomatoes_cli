@@ -1,4 +1,5 @@
 from terminaltables import SingleTable
+from termcolor import colored
 
 from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder, \
     BrowseMovieRowBuilder
@@ -68,16 +69,17 @@ class BrowseTvShowTableBuilder:
 
 
 class BrowseMovieTableBuilder:
-    HEADERS = ["Film", "Score", "Synopsis", "Runtime", "Theater Release", "DVD Release", "Rating", "Actors"]
+    HEADERS = ["",
+               colored("Score", attrs=["bold", "underline"]),
+               colored("Runtime", attrs=["bold", "underline"]),
+               colored("Release", attrs=["bold", "underline"]),
+               colored("Actors", attrs=["bold", "underline"])]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
         2: "left",
         3: "left",
-        4: "left",
         5: "left",
-        6: "left",
-        7: "left"
     }
 
     def __init__(self):
@@ -86,6 +88,7 @@ class BrowseMovieTableBuilder:
     def build(self, movies):
         table = SingleTable([BrowseMovieTableBuilder.HEADERS] + self.rows(movies=movies))
         table.justify_columns = BrowseMovieTableBuilder.COLUMN_JUSTIFICATION
+        table.inner_row_border = True
         return table.table
 
     def rows(self, movies):

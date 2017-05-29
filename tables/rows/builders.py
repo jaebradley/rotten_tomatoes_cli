@@ -1,3 +1,5 @@
+from termcolor import colored
+
 from tables.utilities import RatingFormatter
 
 
@@ -36,6 +38,20 @@ class BrowseMovieRowBuilder:
         self.rating_formatter = RatingFormatter()
 
     def build(self, movie):
-        return [movie.title, self.rating_formatter.format(rating=movie.rotten_tomatoes_score), movie.synopsis,
-                movie.runtime, movie.theater_release_date, movie.dvd_release_date, movie.mpaa_rating,
-                ",".join(movie.actors)]
+        return [self.title(movie=movie), self.rating_formatter.format(rating=movie.rotten_tomatoes_score),
+                movie.runtime, self.release_dates(movie=movie), self.actors(actors=movie.actors)]
+
+    def title(self, movie):
+        return "{title} ({rating})".format(title=colored(movie.title, attrs=["bold"]), rating=movie.mpaa_rating)
+
+    def release_dates(self, movie):
+        release_dates = []
+        if movie.theater_release_date is not None:
+            release_dates.append("{theater_release_date} (Theaters)".format(theater_release_date=movie.theater_release_date))
+        if movie.dvd_release_date is not None:
+            release_dates.append("{dvd_release_date} (DVD)".format(dvd_release_date=movie.dvd_release_date))
+
+        return "\n".join(release_dates)
+
+    def actors(self, actors):
+        return ",\n".join(actors)

@@ -64,11 +64,11 @@ class MovieBrowseResultsParser:
 
     def parse(self, movie_results):
         return [
-            BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result["result"]),
+            BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
                               synopsis=movie_result["synopsis"], runtime=movie_result["runtime"],
                               theater_release_date=movie_result["theaterReleaseDate"],
                               dvd_release_date=self.dvd_release_date(result=movie_result),
-                              mpaa_rating=movie_result["mpaa_rating"], actors=movie_result["actors"])
+                              mpaa_rating=movie_result["mpaaRating"], actors=movie_result["actors"])
             for movie_result in movie_results
         ]
 

@@ -31,4 +31,4 @@ class RottenTomatoesMoviesBrowser:
 
     def browse(self, query):
         results = RottenTomatoesClient.browse_movies(query=query)
-        return self.parser.parse(movie_results=results)
+        return self.parser.parse(movie_results=results["results"])
