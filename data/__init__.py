@@ -1,6 +1,6 @@
 from enum import Enum
 
-from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory
+from rotten_tomatoes_client import TvBrowsingCategory, MovieBrowsingCategory, Service
 
 
 class MovieSearchResult:
@@ -134,3 +134,46 @@ class BrowseStreamingMovieCategory(Enum):
                 return category
 
         raise LookupError("Unknown category for value: {value}".format(value=value))
+
+
+class MovieService(Enum):
+    amazon = {
+        "value": "amazon",
+        "client_value": Service.amazon
+    },
+    prime = {
+        "value": "prime",
+        "client_value": Service.amazon_prime
+    },
+    hbo = {
+        "value": "hbo",
+        "client_value": Service.hbo_go
+    },
+    itunes = {
+        "value": "itunes",
+        "client_value": Service.itunes
+    },
+    netflix = {
+        "value": "netflix",
+        "client_value": Service.netflix
+    },
+    vudu = {
+        "value": "vudu",
+        "client_value": Service.vudu
+    },
+    fandango = {
+        "value": "fandango",
+        "client_value": Service.fandango_now
+    }
+
+    @staticmethod
+    def values():
+        return [category["value"] for category in MovieService]
+
+    @staticmethod
+    def category(value):
+        for category in MovieService:
+            if category["value"] == value:
+                return category
+
+        raise LookupError("Unknown service for value: {value}".format(value=value))
