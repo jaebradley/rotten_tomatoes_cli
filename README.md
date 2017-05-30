@@ -1,5 +1,23 @@
 # Rotten Tomatoes CLI
 
+* [Introduction](https://github.com/jaebradley/rotten_tomatoes_cli#introduction)
+* [Install](https://github.com/jaebradley/rotten_tomatoes_cli#install)
+* [Search](https://github.com/jaebradley/rotten_tomatoes_cli#search)
+  * [Harry Potter Example](https://github.com/jaebradley/rotten_tomatoes_cli#harry-potter-example)
+  * [Master of None Example](https://github.com/jaebradley/rotten_tomatoes_cli#master-of-none-example)
+* [TV](https://github.com/jaebradley/rotten_tomatoes_cli#tv)
+  * [Browse Popular TV Shows Example](https://github.com/jaebradley/rotten_tomatoes_cli#browse-popular-tv-shows-example)
+* [Movies](https://github.com/jaebradley/rotten_tomatoes_cli#movies)
+  * [Streaming](https://github.com/jaebradley/rotten_tomatoes_cli#streaming)
+    * [Upcoming movies on Netflix or Amazon Prime with a minimum rating of 90](https://github.com/jaebradley/rotten_tomatoes_cli#upcoming-movies-on-netflix-or-amazon-prime-with-a-minimum-rating-of-90)
+  * [Theaters](https://github.com/jaebradley/rotten_tomatoes_cli#theaters)
+    * [Action movies in theaters with a minimum rating of 90](https://github.com/jaebradley/rotten_tomatoes_cli#action-movies-in-theaters-with-a-minimum-rating-of-90)
+
+## Introduction
+
+* Search for movies and tv shows on Rotten Tomatoes from the command line
+* Browse movies in theaters or on various streaming platforms like Netflix and Amazon Prime
+
 ## Install
 `pip install rotten_tomatoes_cli`
 
@@ -94,7 +112,7 @@ Category Argument
 * `upcoming`
 * `fresh`
 
-#### Upcoming Movies on Netflix or Amazon Prime with a minimum rating of 90
+#### Upcoming movies on Netflix or Amazon Prime with a minimum rating of 90
 
 `rotten movies streaming upcoming -l 90 -s netflix -s prime`
 
@@ -110,7 +128,7 @@ Category Argument
 * `upcoming`
 * `fresh`
 
-#### Action Movies in Theaters with a minimum rating of 90
+#### Action movies in theaters with a minimum rating of 90
 
 `rotten movies theaters playing -l 90 -g action`
 
