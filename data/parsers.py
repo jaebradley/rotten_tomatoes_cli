@@ -1,4 +1,4 @@
-from data import TvShowSearchResult, MovieSearchResult
+from data import TvShowSearchResult, MovieSearchResult, BrowseTvShowResult, BrowseMovieResult
 
 
 class TvShowSearchResultsParser:
@@ -41,3 +41,48 @@ class MovieSearchResultsParser:
     # Sometimes this field is not set
     def rotten_tomatoes_score(self, result):
         return None if "meterScore" not in result else result["meterScore"]
+
+
+class TvShowBrowseResultsParser:
+    def __init__(self):
+        pass
+
+    def parse(self, tv_show_results):
+        return [
+            BrowseTvShowResult(title=tv_show_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
+            for tv_show_result in tv_show_results
+        ]
+
+    # Sometimes this field is not set
+    def rotten_tomatoes_score(self, result):
+        return None if "tomatoScore" not in result else result["tomatoScore"]
+
+
+class MovieBrowseResultsParser:
+    def __init__(self):
+        pass
+
+    def parse(self, movie_results):
+        return [
+            BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
+                              synopsis=movie_result["synopsis"], runtime=self.runtime(result=movie_result),
+                              theater_release_date=self.theater_release_date(result=movie_result),
+                              dvd_release_date=self.dvd_release_date(result=movie_result),
+                              mpaa_rating=movie_result["mpaaRating"], actors=movie_result["actors"])
+            for movie_result in movie_results
+        ]
+
+    # Sometimes this field is not set
+    def rotten_tomatoes_score(self, result):
+        return None if "tomatoScore" not in result else result["tomatoScore"]
+
+    # Sometimes this field is not set
+    def dvd_release_date(self, result):
+        return None if "dvdReleaseDate" not in result else result["dvdReleaseDate"]
+
+    # Sometimes this field is not set
+    def theater_release_date(self, result):
+        return None if "theaterReleaseDate" not in result else result["theaterReleaseDate"]
+
+    def runtime(self, result):
+        return None if "runtime" not in result else result["runtime"]
