@@ -47,10 +47,10 @@ class BrowseTvShowResult:
 class BrowseTvShowCategory(Enum):
     new = {
         "client_category": TvBrowsingCategory.new_tv_tonight
-    },
+    }
     popular = {
         "client_category": TvBrowsingCategory.most_popular
-    },
+    }
     fresh = {
         "client_category": TvBrowsingCategory.certified_fresh
     }
@@ -71,13 +71,13 @@ class BrowseTvShowCategory(Enum):
 class BrowseMovieInTheaterCategory(Enum):
     opening = {
         "client_category": MovieBrowsingCategory.opening_in_theaters
-    },
+    }
     playing = {
         "client_category": MovieBrowsingCategory.in_theaters
-    },
+    }
     upcoming = {
         "client_category": MovieBrowsingCategory.upcoming_in_theaters
-    },
+    }
     fresh = {
         "client_category": MovieBrowsingCategory.certified_fresh_in_theaters
     }
@@ -98,16 +98,16 @@ class BrowseMovieInTheaterCategory(Enum):
 class BrowseStreamingMovieCategory(Enum):
     all = {
         "client_category": MovieBrowsingCategory.all_dvd_and_streaming
-    },
+    }
     top = {
         "client_category": MovieBrowsingCategory.top_dvd_and_streaming
-    },
+    }
     new = {
         "client_category": MovieBrowsingCategory.new_dvd_and_streaming
-    },
+    }
     upcoming = {
         "client_category": MovieBrowsingCategory.upcoming_dvd_and_streaming
-    },
+    }
     fresh = {
         "client_category": MovieBrowsingCategory.certified_fresh_dvd_and_streaming
     }
@@ -128,22 +128,22 @@ class BrowseStreamingMovieCategory(Enum):
 class MovieService(Enum):
     amazon = {
         "client_service": Service.amazon
-    },
+    }
     prime = {
         "client_service": Service.amazon_prime
-    },
+    }
     hbo = {
         "client_service": Service.hbo_go
-    },
+    }
     itunes = {
         "client_service": Service.itunes
-    },
+    }
     netflix = {
         "client_service": Service.netflix
-    },
+    }
     vudu = {
         "client_service": Service.vudu
-    },
+    }
     fandango = {
         "client_service": Service.fandango_now
     }
@@ -164,37 +164,37 @@ class MovieService(Enum):
 class MovieGenre(Enum):
     action = {
         "client_genre": Genre.action
-    },
+    }
     animation = {
         "client_genre": Genre.animation
-    },
+    }
     art_and_foreign = {
         "client_genre": Genre.art_and_foreign
-    },
+    }
     classics = {
         "client_genre": Genre.classics
-    },
+    }
     comedy = {
         "client_genre": Genre.comedy
-    },
+    }
     documentary = {
         "client_genre": Genre.documentary
-    },
+    }
     drama = {
         "client_genre": Genre.drama
-    },
+    }
     horror = {
         "client_genre": Genre.horror
-    },
+    }
     family = {
         "client_genre": Genre.kids_and_family
-    },
+    }
     mystery = {
         "client_genre": Genre.mystery
-    },
+    }
     romance = {
         "client_genre": Genre.romance
-    },
+    }
     sci_fi_and_fantasy = {
         "client_genre": Genre.sci_fi_and_fantasy
     }
@@ -215,7 +215,7 @@ class MovieGenre(Enum):
 class BrowseSortBy(Enum):
     popularity = {
         "client_value": SortBy.popularity
-    },
+    }
     release = {
         "client_value": SortBy.release
     }

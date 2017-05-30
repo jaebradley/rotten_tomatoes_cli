@@ -24,7 +24,7 @@ def movies():
 @click.option("--genre", "-g", default=None, multiple=True, type=click.Choice(MovieGenre.names()))
 @click.option("--sort_by", default=BrowseSortBy.popularity.name, type=click.Choice(BrowseSortBy.names()))
 def theaters(category, minimum_rating, maximum_rating, certified_fresh, service, genre, sort_by):
-    theaters_category = BrowseMovieInTheaterCategory.category(value=category).value[0]["client_category"]
+    theaters_category = BrowseMovieInTheaterCategory.category(value=category).value["client_category"]
     build(category=theaters_category, minimum_rating=minimum_rating, maximum_rating=maximum_rating,
           certified_fresh=certified_fresh, services=service, genres=genre, sort_by=sort_by)
 
@@ -39,7 +39,7 @@ def theaters(category, minimum_rating, maximum_rating, certified_fresh, service,
 @click.option("--genre", "-g", default=None, multiple=True, type=click.Choice(MovieGenre.names()))
 @click.option("--sort_by", default=BrowseSortBy.popularity.name, type=click.Choice(BrowseSortBy.names()))
 def streaming(category, minimum_rating, maximum_rating, certified_fresh, service, genre, sort_by):
-    streaming_category = BrowseStreamingMovieCategory.category(value=category).value[0]["client_category"]
+    streaming_category = BrowseStreamingMovieCategory.category(value=category).value["client_category"]
     build(category=streaming_category, minimum_rating=minimum_rating, maximum_rating=maximum_rating,
           certified_fresh=certified_fresh, services=service, genres=genre, sort_by=sort_by)
 
@@ -55,12 +55,12 @@ def build(category, minimum_rating, maximum_rating, certified_fresh, services, g
 
 
 def query(category, minimum_rating, maximum_rating, certified_fresh, services, genres, sort_by):
-    services = [MovieService.service(value=service).value[0]["client_service"] for service in services]
-    genres = [MovieGenre.genre(value=genre).value[0]["client_genre"] for genre in genres]
+    services = [MovieService.service(value=service).value["client_service"] for service in services]
+    genres = [MovieGenre.genre(value=genre).value["client_genre"] for genre in genres]
     return MovieBrowsingQuery(minimum_rating=minimum_rating,
                               maximum_rating=maximum_rating,
                               certified_fresh=certified_fresh, services=services, genres=genres,
-                              sort_by=BrowseSortBy.sort_by(value=sort_by).value[0]["client_value"],
+                              sort_by=BrowseSortBy.sort_by(value=sort_by).value["client_value"],
                               category=category)
 
 

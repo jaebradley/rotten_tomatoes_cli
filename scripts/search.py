@@ -7,6 +7,7 @@ searcher = RottenTomatoesSearcher()
 movie_search_table_builder = MovieSearchTableBuilder()
 tv_show_search_table_builder = TvShowSearchTableBuilder()
 
+
 @click.command()
 @click.argument("term", type=click.STRING)
 def search(term):
