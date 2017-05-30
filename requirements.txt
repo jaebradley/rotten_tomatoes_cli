@@ -10,6 +10,7 @@ pbr==3.0.1
 requests==2.16.5
 rotten-tomatoes-client==0.0.3
 six==1.10.0
+tabulate==0.7.7
 termcolor==1.1.0
 terminaltables==3.1.0
 urllib3==1.21.1
