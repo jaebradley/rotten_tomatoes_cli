@@ -195,7 +195,7 @@ class MovieGenre(Enum):
     romance = {
         "client_genre": Genre.romance
     }
-    sci_fi_and_fantasy = {
+    scifi = {
         "client_genre": Genre.sci_fi_and_fantasy
     }
 
