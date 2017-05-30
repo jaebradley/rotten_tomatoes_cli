@@ -19,24 +19,22 @@
 
 ![alt-text](http://imgur.com/FNPejbR.png)
 
-## Browse
+## TV
 
-### TV
-
-`rotten browse tv {category}`
+`rotten tv {category}`
 
 Category Argument
 * `new` (default)
 * `popular`
 * `fresh`
 
-#### Browse Popular TV Shows Example
+### Browse Popular TV Shows Example
 
-`rotten browse tv popular`
+`rotten tv popular`
 
 ![alt-text](http://imgur.com/3PYkLuz.png)
 
-### Movies
+## Movies
 
 Options:
 * `--minimum_rating` / `-l`
@@ -85,9 +83,9 @@ Options:
     * `release`
 
 
-#### Streaming
+### Streaming
 
-`rotten browse movies streaming {category}`
+`rotten movies streaming {category}`
 
 Category Argument
 * `new` (default)
@@ -96,15 +94,15 @@ Category Argument
 * `upcoming`
 * `fresh`
 
-##### Upcoming Movies on Netflix or Amazon Prime with a minimum rating of 90
+#### Upcoming Movies on Netflix or Amazon Prime with a minimum rating of 90
 
-`rotten browse movies streaming upcoming -l 90 -s netflix -s prime`
+`rotten movies streaming upcoming -l 90 -s netflix -s prime`
 
 ![alt-text](http://imgur.com/7aP33au.png)
 
-#### Theaters
+### Theaters
 
-`rotten browse movies theaters {category}`
+`rotten movies theaters {category}`
 
 Category Argument
 * `opening` (default)
@@ -112,8 +110,8 @@ Category Argument
 * `upcoming`
 * `fresh`
 
-##### Action Movies in Theaters with a minimum rating of 90
+#### Action Movies in Theaters with a minimum rating of 90
 
-`rotten browse movies theaters playing -l 90 -g action`
+`rotten movies theaters playing -l 90 -g action`
 
 ![alt-text](http://imgur.com/vU54rQr.png)
