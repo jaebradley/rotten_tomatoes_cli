@@ -10,6 +10,19 @@ class MovieSearchResult:
         self.rotten_tomatoes_score = rotten_tomatoes_score
         self.cast = cast
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, self.__class__):
+            return not self.__eq__(other)
+        return NotImplemented
+
+    def __hash__(self):
+        return hash(tuple(sorted(self.__dict__.items())))
+
 
 class TvShowSearchResult:
     def __init__(self, name, start_year, end_year, rotten_tomatoes_score):

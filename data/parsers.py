@@ -31,12 +31,12 @@ class MovieSearchResultsParser:
         return [
             MovieSearchResult(name=movie_result["name"], year=movie_result["year"],
                               rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
-                              cast=self.cast(cast_results=movie_result["castItems"]))
+                              cast=self.cast(cast=movie_result["castItems"]))
             for movie_result in movie_results
         ]
 
-    def cast(self, cast_results):
-        return [cast_member["name"] for cast_member in cast_results]
+    def cast(self, cast):
+        return [cast_member["name"] for cast_member in cast]
 
     # Sometimes this field is not set
     def rotten_tomatoes_score(self, result):
