@@ -65,7 +65,8 @@ class MovieBrowseResultsParser:
 
     def parse(self, movie_results):
         return [
-            BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
+            BrowseMovieResult(title=movie_result["title"],
+                              rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
                               synopsis=movie_result["synopsis"], runtime=self.runtime(result=movie_result),
                               theater_release_date=self.theater_release_date(result=movie_result),
                               dvd_release_date=self.dvd_release_date(result=movie_result),
