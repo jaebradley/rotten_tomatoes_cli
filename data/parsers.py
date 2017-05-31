@@ -31,12 +31,12 @@ class MovieSearchResultsParser:
         return [
             MovieSearchResult(name=movie_result["name"], year=movie_result["year"],
                               rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
-                              cast=self.cast(cast_results=movie_result["castItems"]))
+                              cast=self.cast(cast=movie_result["castItems"]))
             for movie_result in movie_results
         ]
 
-    def cast(self, cast_results):
-        return [cast_member["name"] for cast_member in cast_results]
+    def cast(self, cast):
+        return [cast_member["name"] for cast_member in cast]
 
     # Sometimes this field is not set
     def rotten_tomatoes_score(self, result):
@@ -49,7 +49,8 @@ class TvShowBrowseResultsParser:
 
     def parse(self, tv_show_results):
         return [
-            BrowseTvShowResult(title=tv_show_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
+            BrowseTvShowResult(title=tv_show_result["title"],
+                               rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
             for tv_show_result in tv_show_results
         ]
 
@@ -64,7 +65,8 @@ class MovieBrowseResultsParser:
 
     def parse(self, movie_results):
         return [
-            BrowseMovieResult(title=movie_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
+            BrowseMovieResult(title=movie_result["title"],
+                              rotten_tomatoes_score=self.rotten_tomatoes_score(result=movie_result),
                               synopsis=movie_result["synopsis"], runtime=self.runtime(result=movie_result),
                               theater_release_date=self.theater_release_date(result=movie_result),
                               dvd_release_date=self.dvd_release_date(result=movie_result),
