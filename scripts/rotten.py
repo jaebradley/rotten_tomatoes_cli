@@ -1,8 +1,8 @@
 import click
 
 from scripts.movies import movies
-from scripts.tv import tv
 from scripts.search import search
+from scripts.tv import tv
 
 
 @click.group()
