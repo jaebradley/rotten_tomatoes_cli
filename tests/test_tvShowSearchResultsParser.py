@@ -24,6 +24,10 @@ class TestTvShowSearchResultsParser(TestCase):
         year = "jaebaebae"
         self.assertEqual(self.parser.year(year=year), year)
 
+
+class TestTvShowSearchResultsParsing(TestCase):
+    parser = TvShowSearchResultsParser()
+
     def test_parsing_list_of_results(self):
         self.parser.year = Mock("parse_year")
         self.parser.year.return_value = "jae"
