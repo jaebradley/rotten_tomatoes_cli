@@ -49,7 +49,8 @@ class TvShowBrowseResultsParser:
 
     def parse(self, tv_show_results):
         return [
-            BrowseTvShowResult(title=tv_show_result["title"], rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
+            BrowseTvShowResult(title=tv_show_result["title"],
+                               rotten_tomatoes_score=self.rotten_tomatoes_score(result=tv_show_result))
             for tv_show_result in tv_show_results
         ]
 
