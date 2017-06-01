@@ -57,15 +57,15 @@ class MpaaRatingFormatter:
             return "magenta"
 
 
-def as_ascii(text):
+def convert_to_ascii(text):
     return text.encode("ascii", "ignore").decode("ascii")
 
 
 def clean_html(raw_html):
-    cleanr = re.compile('<.*?>')
-    clean_text = re.sub(cleanr, '', raw_html)
+    clean = re.compile("<.*?>")
+    clean_text = re.sub(clean, "", raw_html)
     return clean_text
 
 
 def formatted_header(text):
-    return colored(text=text, attrs=["bold", "underline"])
+    return colored(text=convert_to_ascii(text=text), attrs=["bold", "underline"])

@@ -2,7 +2,7 @@ from textwrap import wrap
 
 from termcolor import colored
 
-from tables.utilities import RottenTomatoesScoreFormatter, MpaaRatingFormatter, as_ascii, clean_html, formatted_header
+from tables.utilities import RottenTomatoesScoreFormatter, MpaaRatingFormatter, convert_to_ascii, clean_html, formatted_header
 
 
 class MovieSearchRowBuilder:
@@ -11,15 +11,19 @@ class MovieSearchRowBuilder:
         self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, movie):
-        return [self.name(name=movie.name), self.rating_formatter.format(rating=movie.rotten_tomatoes_score),
-                movie.year, self.cast(cast=movie.cast)]
+        return [
+            self.name(name=movie.name),
+            self.rating_formatter.format(rating=movie.rotten_tomatoes_score),
+            movie.year,
+            self.cast(cast=movie.cast)
+        ]
 
     def name(self, name):
-        wrapped_name = wrap(text=as_ascii(text=name), width=30)
+        wrapped_name = wrap(text=convert_to_ascii(text=name), width=30)
         return "\n".join([colored(value, attrs=["bold"]) for value in wrapped_name])
 
     def cast(self, cast):
-        return "\n".join([as_ascii(text=actor) for actor in cast])
+        return "\n".join([convert_to_ascii(text=actor) for actor in cast])
 
 
 class TvShowSearchRowBuilder:
@@ -35,7 +39,7 @@ class TvShowSearchRowBuilder:
         return "{start_year}-{end_year}".format(start_year=start_year, end_year=end_year_value)
 
     def name(self, name):
-        wrapped_name = wrap(text=as_ascii(text=name), width=30)
+        wrapped_name = wrap(text=convert_to_ascii(text=name), width=30)
         return "\n".join([colored(value, attrs=["bold"]) for value in wrapped_name])
 
 
@@ -100,14 +104,14 @@ class BrowseMovieRowBuilder:
         return "\n".join(release_dates)
 
     def actors(self, actors):
-        return "\n".join([as_ascii(text=actor) for actor in actors])
+        return "\n".join([convert_to_ascii(text=actor) for actor in actors])
 
     def runtime(self, runtime):
         return "N/A" if runtime is None else runtime
 
     def synopsis(self, synopsis):
-        return "\n".join(wrap(text=as_ascii(text=clean_html(synopsis)), width=50))
+        return "\n".join(wrap(text=convert_to_ascii(text=clean_html(synopsis)), width=50))
 
     def title(self, title):
-        wrapped_title = wrap(text=as_ascii(text=title), width=50)
+        wrapped_title = wrap(text=convert_to_ascii(text=title), width=50)
         return "\n".join([colored(value, attrs=["bold", "underline"]) for value in wrapped_title])
