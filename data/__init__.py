@@ -50,6 +50,19 @@ class SearchResult:
         self.movies = movies
         self.tv_shows = tv_shows
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, self.__class__):
+            return not self.__eq__(other)
+        return NotImplemented
+
+    def __hash__(self):
+        return hash(tuple(sorted(self.__dict__.items())))
+
 
 class BrowseMovieResult:
     def __init__(self, title, rotten_tomatoes_score, synopsis, runtime, theater_release_date, dvd_release_date,
