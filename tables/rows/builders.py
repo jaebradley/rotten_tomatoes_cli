@@ -99,7 +99,8 @@ class BrowseMovieRowBuilder:
         release_dates = []
 
         if movie.theater_release_date is not None:
-            release_dates.append("{theater_release_date} (Theaters)".format(theater_release_date=movie.theater_release_date))
+            release_dates.append("{theater_release_date} (Theaters)"
+                                 .format(theater_release_date=movie.theater_release_date))
 
         if movie.dvd_release_date is not None:
             release_dates.append("{dvd_release_date} (DVD)".format(dvd_release_date=movie.dvd_release_date))
@@ -113,7 +114,7 @@ class BrowseMovieRowBuilder:
         return "N/A" if runtime is None else runtime
 
     def synopsis(self, synopsis):
-        return "\n".join(wrap(text=convert_to_ascii(text=clean_html(synopsis)), width=50))
+        return "\n".join(wrap(text=convert_to_ascii(text=clean_html(raw_html=synopsis)), width=50))
 
     def title(self, title):
         wrapped_title = wrap(text=convert_to_ascii(text=title), width=50)
