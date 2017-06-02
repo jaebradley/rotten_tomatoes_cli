@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from mock import patch, Mock
+
 from tables.rows.builders import MovieSearchRowBuilder
 
 
