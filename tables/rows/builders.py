@@ -31,8 +31,11 @@ class TvShowSearchRowBuilder:
         self.rating_formatter = RottenTomatoesScoreFormatter()
 
     def build(self, tv_show):
-        return [self.name(name=tv_show.name), self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score),
-                self.format_years(start_year=tv_show.start_year, end_year=tv_show.end_year)]
+        return [
+            self.name(name=tv_show.name),
+            self.rating_formatter.format(rating=tv_show.rotten_tomatoes_score),
+            self.format_years(start_year=tv_show.start_year, end_year=tv_show.end_year)
+        ]
 
     def format_years(self, start_year, end_year):
         end_year_value = "" if end_year is None else end_year
