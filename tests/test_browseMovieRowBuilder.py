@@ -5,6 +5,12 @@ from mock import patch, Mock
 from tables.rows.builders import BrowseMovieRowBuilder
 
 
+class MockMovie:
+    def __init__(self, theater_release_date, dvd_release_date):
+        self.theater_release_date = theater_release_date
+        self.dvd_release_date = dvd_release_date
+
+
 class TestName(TestCase):
     row_builder = BrowseMovieRowBuilder()
 
@@ -67,3 +73,17 @@ class TestActors(TestCase):
         self.assertEqual(expected, self.row_builder.actors(actors=actors))
         mock_ascii_conversion.assert_any_call(text="actor1")
         mock_ascii_conversion.assert_any_call(text="actor2")
+
+
+class TestReleaseDates(TestCase):
+    row_builder = BrowseMovieRowBuilder()
+
+    def test_should_return_movie_theater_release_date(self):
+        theater_release_date = "theater release date"
+        movie = MockMovie(theater_release_date=theater_release_date, dvd_release_date=None)
+        self.assertEqual("theater release date (Theaters)", self.row_builder.release_dates(movie=movie))
+
+    def test_should_return_dvd_release_date(self):
+        dvd_release_date = "dvd release date"
+        movie = MockMovie(theater_release_date=None, dvd_release_date=dvd_release_date)
+        self.assertEqual("dvd release date (DVD)", self.row_builder.release_dates(movie=movie))
