@@ -6,13 +6,16 @@ from tables.rows.builders import BrowseMovieRowBuilder
 
 
 class MockMovie:
-    def __init__(self, theater_release_date=None, dvd_release_date=None, rotten_tomatoes_score=None, mpaa_rating=None, runtime=None, actors=None):
+    def __init__(self, theater_release_date=None, dvd_release_date=None, rotten_tomatoes_score=None,
+                 mpaa_rating=None, runtime=None, actors=None, title=None, synopsis=None):
         self.theater_release_date = theater_release_date
         self.dvd_release_date = dvd_release_date
         self.rotten_tomatoes_score = rotten_tomatoes_score
         self.mpaa_rating = mpaa_rating
         self.runtime = runtime
         self.actors = actors
+        self.title = title
+        self.synopsis = synopsis
 
 
 class TestName(TestCase):
@@ -129,3 +132,19 @@ class TestDetails(TestCase):
         mocked_formatted_header.assert_any_call(text="Release")
         mocked_formatted_header.assert_any_call(text="Actors")
 
+
+class TestSummary(TestCase):
+    row_builder = BrowseMovieRowBuilder()
+
+    def test_should_return_summary(self):
+        title = "title"
+        synopsis = "synopsis"
+        movie = MockMovie(title=title, synopsis=synopsis)
+        self.row_builder.title = Mock("title")
+        self.row_builder.synopsis = Mock("synopsis")
+        self.row_builder.title.return_value = title
+        self.row_builder.synopsis.return_value = synopsis
+        expected = "title\n\nsynopsis"
+        self.assertEqual(expected, self.row_builder.summary(movie=movie))
+        self.row_builder.title.assert_called_once_with(title=title)
+        self.row_builder.synopsis.assert_called_once_with(synopsis=synopsis)
