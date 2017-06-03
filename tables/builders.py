@@ -6,7 +6,12 @@ from tables.utilities import formatted_header
 
 
 class MovieSearchTableBuilder:
-    HEADERS = [formatted_header(text="Film"), formatted_header(text="Score"), formatted_header(text="Year"), formatted_header(text="Cast")]
+    HEADERS = [
+        formatted_header(text="Film"),
+        formatted_header(text="Score"),
+        formatted_header(text="Year"),
+        formatted_header(text="Cast")
+    ]
     COLUMN_JUSTIFICATION = {
         0: "left",
         1: "left",
@@ -24,8 +29,11 @@ class MovieSearchTableBuilder:
         return table.table
 
     def rows(self, movies):
-        sorted_movies = sorted(movies, key=lambda movie: movie.rotten_tomatoes_score, reverse=True)
-        return [self.row_builder.build(movie=movie) for movie in sorted_movies]
+        sorted_movies = sorted(movies, key=lambda m: m.rotten_tomatoes_score, reverse=True)
+        return [
+            self.row_builder.build(movie=movie)
+            for movie in sorted_movies
+        ]
 
 
 class TvShowSearchTableBuilder:
