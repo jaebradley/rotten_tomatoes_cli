@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from mock import Mock, patch
 
-from data.services import RottenTomatoesSearcher
 from data import SearchResult
+from data.services import RottenTomatoesSearcher
 
 
 class TestRottenTomatoesSearcher(TestCase):

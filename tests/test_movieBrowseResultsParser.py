@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from mock import Mock
 
-from data.parsers import MovieBrowseResultsParser
 from data import BrowseMovieResult
+from data.parsers import MovieBrowseResultsParser
 
 
 class TestMovieBrowseResultsRottenTomatoesScoreParsing(TestCase):

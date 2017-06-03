@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from mock import Mock
 
-from data.parsers import TvShowSearchResultsParser
 from data import TvShowSearchResult
+from data.parsers import TvShowSearchResultsParser
 
 
 class TestTvShowSearchResultsParser(TestCase):

@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from mock import Mock
 
-from data.parsers import MovieSearchResultsParser
 from data import MovieSearchResult
+from data.parsers import MovieSearchResultsParser
 
 
 class TestMovieSearchResultsCastParsing(TestCase):
