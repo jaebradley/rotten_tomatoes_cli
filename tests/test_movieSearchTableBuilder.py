@@ -7,13 +7,13 @@ from tables.builders import MovieSearchTableBuilder
 logging.basicConfig(level=logging.DEBUG)
 
 
-class TestMovieSearchTableBuilder(TestCase):
+class IntegrationTest(TestCase):
     movie_search_result = MovieSearchResult(name="name", year="year", rotten_tomatoes_score=1, cast=["Jae", "Baebae"])
     another_movie_search_result = MovieSearchResult(name="another name", year="another year", rotten_tomatoes_score=100, cast=["Another Jae", "Another Baebae"])
     movies = [another_movie_search_result, movie_search_result]
     table_builder = MovieSearchTableBuilder()
 
-    def integration_test(self):
+    def test_should_return_table_output(self):
         expected = """(0lqqqqqqqqqqqqqqwqqqqqqqwqqqqqqqqqqqqqqwqqqqqqqqqqqqqqqqk(B
 (0x(B [4m[1mFilm[0m         (0x(B [4m[1mScore[0m (0x(B     [4m[1mYear[0m     (0x(B [4m[1mCast[0m           (0x(B
 (0tqqqqqqqqqqqqqqnqqqqqqqnqqqqqqqqqqqqqqnqqqqqqqqqqqqqqqqu(B
