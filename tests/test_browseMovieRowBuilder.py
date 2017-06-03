@@ -148,3 +148,19 @@ class TestSummary(TestCase):
         self.assertEqual(expected, self.row_builder.summary(movie=movie))
         self.row_builder.title.assert_called_once_with(title=title)
         self.row_builder.synopsis.assert_called_once_with(synopsis=synopsis)
+
+
+class TestBuild(TestCase):
+    row_builder = BrowseMovieRowBuilder()
+
+    def test_should_build_row(self):
+        summary = "summary"
+        details = "details"
+        self.row_builder.summary = Mock("summary")
+        self.row_builder.details = Mock("details")
+        self.row_builder.summary.return_value = summary
+        self.row_builder.details.return_value = details
+        expected = [summary, details]
+        self.assertEqual(expected, self.row_builder.build(movie=None))
+        self.row_builder.summary.assert_called_once_with(movie=None)
+        self.row_builder.details.assert_called_once_with(movie=None)

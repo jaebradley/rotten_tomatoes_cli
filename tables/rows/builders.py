@@ -61,7 +61,10 @@ class BrowseMovieRowBuilder:
         self.mpaa_rating_formatter = MpaaRatingFormatter()
 
     def build(self, movie):
-        return [self.summary(movie=movie), self.details(movie=movie)]
+        return [
+            self.summary(movie=movie),
+            self.details(movie=movie)
+        ]
 
     def summary(self, movie):
         return "{title}\n\n" \
