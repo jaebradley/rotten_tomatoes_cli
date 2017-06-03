@@ -6,9 +6,13 @@ from tables.rows.builders import BrowseMovieRowBuilder
 
 
 class MockMovie:
-    def __init__(self, theater_release_date, dvd_release_date):
+    def __init__(self, theater_release_date=None, dvd_release_date=None, rotten_tomatoes_score=None, mpaa_rating=None, runtime=None, actors=None):
         self.theater_release_date = theater_release_date
         self.dvd_release_date = dvd_release_date
+        self.rotten_tomatoes_score = rotten_tomatoes_score
+        self.mpaa_rating = mpaa_rating
+        self.runtime = runtime
+        self.actors = actors
 
 
 class TestName(TestCase):
@@ -87,3 +91,41 @@ class TestReleaseDates(TestCase):
         dvd_release_date = "dvd release date"
         movie = MockMovie(theater_release_date=None, dvd_release_date=dvd_release_date)
         self.assertEqual("dvd release date (DVD)", self.row_builder.release_dates(movie=movie))
+
+
+class TestDetails(TestCase):
+    row_builder = BrowseMovieRowBuilder()
+
+    @patch("tables.rows.builders.formatted_header")
+    def test_should_return_details(self, mocked_formatted_header):
+        score = "score"
+        rating = "rating"
+        runtime = "runtime"
+        release = "release"
+        actors = "actors"
+        movie = MockMovie(rotten_tomatoes_score=score, mpaa_rating=rating, runtime=runtime, actors=actors)
+        mocked_formatted_header.return_value = "formatted header"
+        self.row_builder.rotten_tomatoes_score_formatter.format = Mock("rotten tomatoes score formatter")
+        self.row_builder.rotten_tomatoes_score_formatter.format.return_value = score
+        self.row_builder.mpaa_rating_formatter.format = Mock("mpaa rating formatter")
+        self.row_builder.mpaa_rating_formatter.format.return_value = rating
+        self.row_builder.runtime = Mock("runtime")
+        self.row_builder.runtime.return_value = runtime
+        self.row_builder.release_dates = Mock("release dates")
+        self.row_builder.release_dates.return_value = release
+        self.row_builder.actors = Mock("actors")
+        self.row_builder.actors.return_value = actors
+
+        expected = "formatted header\nscore\n\nformatted header\nrating\n\nformatted header\nruntime\n\nformatted header\nrelease\n\nformatted header\nactors"
+        self.assertEqual(expected, self.row_builder.details(movie=movie))
+        self.row_builder.rotten_tomatoes_score_formatter.format.assert_called_once_with(rating=score)
+        self.row_builder.mpaa_rating_formatter.format.assert_called_once_with(rating=rating)
+        self.row_builder.runtime.assert_called_once_with(runtime=runtime)
+        self.row_builder.release_dates.assert_called_once_with(movie=movie)
+        self.row_builder.actors.assert_called_once_with(actors=actors)
+        mocked_formatted_header.assert_any_call(text="Score")
+        mocked_formatted_header.assert_any_call(text="Rating")
+        mocked_formatted_header.assert_any_call(text="Runtime")
+        mocked_formatted_header.assert_any_call(text="Release")
+        mocked_formatted_header.assert_any_call(text="Actors")
+

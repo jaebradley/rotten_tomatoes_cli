@@ -55,11 +55,6 @@ class BrowseTvShowRowBuilder:
 
 
 class BrowseMovieRowBuilder:
-    SCORE_HEADER = formatted_header(text="Score")
-    RATING_HEADER = formatted_header(text="Rating")
-    RUNTIME_HEADER = formatted_header(text="Runtime")
-    RELEASE_HEADER = formatted_header(text="Release")
-    ACTORS_HEADER = formatted_header(text="Actors")
 
     def __init__(self):
         self.rotten_tomatoes_score_formatter = RottenTomatoesScoreFormatter()
@@ -85,14 +80,15 @@ class BrowseMovieRowBuilder:
                "{release}\n\n" \
                "{actors_header}\n" \
                "{actors}"\
-            .format(score_header=BrowseMovieRowBuilder.SCORE_HEADER,
-                    rating_header=BrowseMovieRowBuilder.RATING_HEADER,
-                    runtime_header=BrowseMovieRowBuilder.RUNTIME_HEADER,
-                    release_header=BrowseMovieRowBuilder.RELEASE_HEADER,
-                    actors_header=BrowseMovieRowBuilder.ACTORS_HEADER,
+            .format(score_header=formatted_header(text="Score"),
+                    rating_header=formatted_header(text="Rating"),
+                    runtime_header=formatted_header(text="Runtime"),
+                    release_header=formatted_header(text="Release"),
+                    actors_header=formatted_header(text="Actors"),
                     score=self.rotten_tomatoes_score_formatter.format(rating=movie.rotten_tomatoes_score),
                     rating=self.mpaa_rating_formatter.format(rating=movie.mpaa_rating),
-                    runtime=self.runtime(runtime=movie.runtime), release=self.release_dates(movie=movie),
+                    runtime=self.runtime(runtime=movie.runtime),
+                    release=self.release_dates(movie=movie),
                     actors=self.actors(actors=movie.actors))
 
     def release_dates(self, movie):
