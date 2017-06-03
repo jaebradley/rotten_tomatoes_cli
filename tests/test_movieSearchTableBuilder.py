@@ -24,7 +24,9 @@ class TestMovieSearchTableBuilder(TestCase):
 (0x(B              (0x(B       (0x(B              (0x(B Baebae         (0x(B
 (0mqqqqqqqqqqqqqqvqqqqqqqvqqqqqqqqqqqqqqvqqqqqqqqqqqqqqqqj(B"""
         output = self.table_builder.build(movies=self.movies)
-        self.assertEqual(expected, output)
 
         logging.debug("Expected Movie Search Table:\n{expected}".format(expected=expected))
         logging.debug("Actual Movie Search Table:\n{output}".format(output=output))
+
+        self.assertEqual(expected, output)
+
