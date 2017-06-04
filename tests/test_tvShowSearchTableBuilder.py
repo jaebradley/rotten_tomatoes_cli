@@ -34,3 +34,5 @@ class IntegrationTest(TestCase):
         logging.debug("Expected TV Show Search Table:\n{expected}".format(expected=expected))
         logging.debug("Actual TV Show Search Table:\n{output}".format(output=output))
 
+        self.assertEqual(output, expected)
+
