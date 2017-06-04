@@ -1,90 +1,80 @@
 from terminaltables import SingleTable
 
-from tables.rows.builders import MovieSearchRowBuilder, TvShowSearchRowBuilder, BrowseTvShowRowBuilder, \
-    BrowseMovieRowBuilder
 from tables.utilities import formatted_header
 
 
-class RottenTomatoesScoreSorter:
-    def __init__(self):
-        pass
+class RottenTomatoesTableBuilder:
+    def __init__(self, row_builder):
+        self.row_builder = row_builder
 
-    def sort_descending(self, objects):
-        return sorted(objects, key=lambda obj: obj.rotten_tomatoes_score, reverse=True)
-
-
-class MovieSearchTableBuilder(RottenTomatoesScoreSorter):
-    HEADERS = [
-        formatted_header(text="Film"),
-        formatted_header(text="Score"),
-        formatted_header(text="Year"),
-        formatted_header(text="Cast")
-    ]
-    COLUMN_JUSTIFICATION = {2: "center"}
-
-    def __init__(self):
-        RottenTomatoesScoreSorter.__init__(self)
-        self.row_builder = MovieSearchRowBuilder()
-
-    def build(self, movies):
-        table = SingleTable([MovieSearchTableBuilder.HEADERS] + self.rows(movies))
-        table.justify_columns = MovieSearchTableBuilder.COLUMN_JUSTIFICATION
+    def build(self, objects):
+        table = SingleTable(self.all_table_rows(objects))
+        print self.all_table_rows(objects)
+        table.justify_columns = self.column_format()
         table.inner_row_border = True
         return table.table
 
-    def rows(self, movies):
+    def all_table_rows(self, objects):
+        return [self.headers()] + self.rows(objects)
+
+    def rows(self, objects):
         return [
-            self.row_builder.build(movie)
-            for movie in self.sort_descending(movies)
+            self.row_builder.build(obj)
+            for obj in RottenTomatoesTableBuilder.sort_by_score_descending(objects)
+        ]
+
+    @staticmethod
+    def sort_by_score_descending(objects):
+        return sorted(objects, key=lambda obj: obj.rotten_tomatoes_score, reverse=True)
+
+    @staticmethod
+    def column_format():
+        return {}
+
+    @staticmethod
+    def headers():
+        return []
+
+
+class MovieSearchTableBuilder(RottenTomatoesTableBuilder):
+
+    @staticmethod
+    def column_format():
+        return {2: "center"}
+
+    @staticmethod
+    def headers():
+        return [
+            formatted_header(text="Film"),
+            formatted_header(text="Score"),
+            formatted_header(text="Year"),
+            formatted_header(text="Cast")
         ]
 
 
-class TvShowSearchTableBuilder(RottenTomatoesScoreSorter):
-    HEADERS = [formatted_header(text="TV Show"), formatted_header(text="Score"), formatted_header(text="Years")]
+class TvShowSearchTableBuilder(RottenTomatoesTableBuilder):
 
-    def __init__(self):
-        RottenTomatoesScoreSorter.__init__(self)
-        self.row_builder = TvShowSearchRowBuilder()
-
-    def build(self, tv_shows):
-        table = SingleTable([TvShowSearchTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
-        table.inner_row_border = True
-        return table.table
-
-    def rows(self, tv_shows):
-        sorted_tv_shows = sorted(tv_shows, key=lambda tv_show: tv_show.rotten_tomatoes_score, reverse=True)
-        return [self.row_builder.build(tv_show=tv_show) for tv_show in sorted_tv_shows]
+    @staticmethod
+    def headers():
+        return [
+            formatted_header("TV Show"),
+            formatted_header("Score"),
+            formatted_header("Years")
+        ]
 
 
-class BrowseTvShowTableBuilder(RottenTomatoesScoreSorter):
-    HEADERS = [formatted_header(text="TV Show"), formatted_header(text="Score")]
+class BrowseTvShowTableBuilder(RottenTomatoesTableBuilder):
 
-    def __init__(self):
-        RottenTomatoesScoreSorter.__init__(self)
-        self.row_builder = BrowseTvShowRowBuilder()
-
-    def build(self, tv_shows):
-        table = SingleTable([BrowseTvShowTableBuilder.HEADERS] + self.rows(tv_shows=tv_shows))
-        table.inner_row_border = True
-        return table.table
-
-    def rows(self, tv_shows):
-        sorted_tv_shows = sorted(tv_shows, key=lambda tv_show: tv_show.rotten_tomatoes_score, reverse=True)
-        return [self.row_builder.build(tv_show=tv_show) for tv_show in sorted_tv_shows]
+    @staticmethod
+    def headers():
+        return [
+            formatted_header(text="TV Show"),
+            formatted_header(text="Score")
+        ]
 
 
-class BrowseMovieTableBuilder(RottenTomatoesScoreSorter):
-    HEADERS = ["", formatted_header(text="Details")]
+class BrowseMovieTableBuilder(RottenTomatoesTableBuilder):
 
-    def __init__(self):
-        RottenTomatoesScoreSorter.__init__(self)
-        self.row_builder = BrowseMovieRowBuilder()
-
-    def build(self, movies):
-        table = SingleTable([BrowseMovieTableBuilder.HEADERS] + self.rows(movies=movies))
-        table.inner_row_border = True
-        return table.table
-
-    def rows(self, movies):
-        sorted_movies = sorted(movies, key=lambda movie: movie.rotten_tomatoes_score, reverse=True)
-        return [self.row_builder.build(movie=movie) for movie in sorted_movies]
+    @staticmethod
+    def headers():
+        return ["", formatted_header(text="Details")]

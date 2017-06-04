@@ -2,7 +2,6 @@ from unittest import TestCase
 
 from mock import Mock, patch
 
-
 from tables.utilities import RottenTomatoesScoreFormatter
 
 

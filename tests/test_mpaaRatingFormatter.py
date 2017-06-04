@@ -2,7 +2,6 @@ from unittest import TestCase
 
 from mock import patch, Mock
 
-
 from tables.utilities import MpaaRatingFormatter
 
 

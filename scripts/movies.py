@@ -4,9 +4,10 @@ from rotten_tomatoes_client import MovieBrowsingQuery
 from data import BrowseStreamingMovieCategory, BrowseMovieInTheaterCategory, MovieService, MovieGenre, BrowseSortBy
 from data.services import RottenTomatoesMoviesBrowser
 from tables.builders import BrowseMovieTableBuilder
+from tables.rows.builders import BrowseMovieRowBuilder
 
 browser = RottenTomatoesMoviesBrowser()
-table_builder = BrowseMovieTableBuilder()
+table_builder = BrowseMovieTableBuilder(BrowseMovieRowBuilder())
 
 
 @click.group()
@@ -49,7 +50,7 @@ def build(category, minimum_rating, maximum_rating, certified_fresh, services, g
                                    maximum_rating=maximum_rating, certified_fresh=certified_fresh,
                                    services=services, genres=genres, sort_by=sort_by))
     if len(results) > 0:
-        click.echo(table_builder.build(movies=results))
+        click.echo(table_builder.build(results))
     else:
         click.echo("No results")
 
