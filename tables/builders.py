@@ -15,7 +15,10 @@ class RottenTomatoesTableBuilder:
         return table.table
 
     def all_table_rows(self, objects):
-        return [self.headers()] + self.rows(objects)
+        return [self.formatted_headers()] + self.rows(objects)
+
+    def formatted_headers(self):
+        return [formatted_header(text=value) for value in self.header_values()]
 
     def rows(self, objects):
         return [
@@ -32,7 +35,7 @@ class RottenTomatoesTableBuilder:
         return {}
 
     @staticmethod
-    def headers():
+    def header_values():
         return []
 
 
@@ -43,38 +46,26 @@ class MovieSearchTableBuilder(RottenTomatoesTableBuilder):
         return {2: "center"}
 
     @staticmethod
-    def headers():
-        return [
-            formatted_header(text="Film"),
-            formatted_header(text="Score"),
-            formatted_header(text="Year"),
-            formatted_header(text="Cast")
-        ]
+    def header_values():
+        return ["Film", "Score", "Year", "Cast"]
 
 
 class TvShowSearchTableBuilder(RottenTomatoesTableBuilder):
 
     @staticmethod
-    def headers():
-        return [
-            formatted_header("TV Show"),
-            formatted_header("Score"),
-            formatted_header("Years")
-        ]
+    def header_values():
+        return ["TV Show", "Score", "Years"]
 
 
 class BrowseTvShowTableBuilder(RottenTomatoesTableBuilder):
 
     @staticmethod
-    def headers():
-        return [
-            formatted_header(text="TV Show"),
-            formatted_header(text="Score")
-        ]
+    def header_values():
+        return ["TV Show", "Score"]
 
 
 class BrowseMovieTableBuilder(RottenTomatoesTableBuilder):
 
     @staticmethod
-    def headers():
-        return ["", formatted_header(text="Details")]
+    def header_values():
+        return ["", "Details"]
