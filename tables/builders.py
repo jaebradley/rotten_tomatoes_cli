@@ -9,7 +9,6 @@ class RottenTomatoesTableBuilder:
 
     def build(self, objects):
         table = SingleTable(self.all_table_rows(objects))
-        print self.all_table_rows(objects)
         table.justify_columns = self.column_format()
         table.inner_row_border = True
         return table.table
