@@ -27,7 +27,11 @@ class RottenTomatoesTableBuilder:
 
     @staticmethod
     def sort_by_score_descending(objects):
-        return sorted(objects, key=lambda obj: obj.rotten_tomatoes_score, reverse=True)
+        return sorted(
+                objects,
+                key=lambda obj: obj.rotten_tomatoes_score if obj.rotten_tomatoes_score is not None else -1,
+                reverse=True
+        )
 
     @staticmethod
     def column_format():
