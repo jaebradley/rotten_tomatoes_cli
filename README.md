@@ -1,5 +1,9 @@
 # Rotten Tomatoes CLI
 
+[![Build Status](https://travis-ci.org/jaebradley/rotten_tomatoes_cli.svg?branch=master)](https://travis-ci.org/jaebradley/rotten_tomatoes_cli)
+[![PyPI version](https://badge.fury.io/py/rotten_tomatoes_cli.svg)](https://badge.fury.io/py/rotten_tomatoes_cli)
+[![codecov](https://codecov.io/gh/jaebradley/rotten_tomatoes_cli/branch/master/graph/badge.svg)](https://codecov.io/gh/jaebradley/rotten_tomatoes_cli)
+
 * [Introduction](https://github.com/jaebradley/rotten_tomatoes_cli#introduction)
 * [Install](https://github.com/jaebradley/rotten_tomatoes_cli#install)
 * [Search](https://github.com/jaebradley/rotten_tomatoes_cli#search)
